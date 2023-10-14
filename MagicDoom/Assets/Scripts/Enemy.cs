@@ -6,12 +6,13 @@ public class Enemy : MonoBehaviour
 {
     private float speed;
     private List<GameObject> potentialTarget = new List<GameObject>();
-    private float maxDistance = 1000;
+    private float maxDistance;
     private GameObject targetEnemy;
 
     void Start()
     {
         speed = 0.5f;
+        maxDistance = 1000;
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {

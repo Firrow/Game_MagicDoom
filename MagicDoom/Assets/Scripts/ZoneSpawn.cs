@@ -7,7 +7,7 @@ public class ZoneSpawn : MonoBehaviour
     public GameObject enemy;
 
     private Vector2 spawnPosition;
-    private float delay = 10f; //à voir si temps aléatoire ou évolu
+    private float delay = 2f; //à voir si temps aléatoire ou évolu
 
     void Start()
     {
