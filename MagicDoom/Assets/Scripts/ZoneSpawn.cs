@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneSpawn : MonoBehaviour
@@ -7,7 +6,7 @@ public class ZoneSpawn : MonoBehaviour
     public GameObject enemy;
 
     private Vector2 spawnPosition;
-    private float delay = 2f; //à voir si temps aléatoire ou évolu
+    private float delay = 1f; //à voir si temps aléatoire ou évolu
 
     void Start()
     {
@@ -26,4 +25,3 @@ public class ZoneSpawn : MonoBehaviour
         StartCoroutine(Spawn());
     }
 }
-
