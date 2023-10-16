@@ -4,42 +4,59 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float speed;
+    private List<GameObject> potentialTarget = new List<GameObject>();
+    private float maxDistance;
+    private GameObject targetEnemy;
+
     void Start()
     {
-        
+        speed = 0.5f;
+        maxDistance = float.PositiveInfinity;
+
+        foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
+        {
+            potentialTarget.Add(item);
+        }
+        foreach (var item in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            potentialTarget.Add(item);
+        }
+
+
+        ChoiceTarget();
+        EnemyOrientation();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        ChoiceTarget();
+        //when enemy is close to target
+        if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.5f)
+            transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
     }
 
 
-    //NOTE LIGHT UP : Fonction spawnant les ennemis
-    /*Choisis une coordonnée dans un cercle autour du joueur, multipliée par spawnRadius pour que 
-    l'ennemi n'apparaisse pas au contact du joueur
-    spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
-    
-         //Fonction spawnant les ennemis
-    IEnumerator SpawnAnEnemy()
-    {
-        Vector2 spawnPos = player.transform.position; //Récupère la position du joueur
-        /*Choisis une coordonnée dans un cercle autour du joueur, multipliée par spawnRadius pour que 
-        l'ennemi n'apparaisse pas au contact du joueur*/
-        //spawnPos += Random.insideUnitCircle.normalized* spawnRadius;
 
-        //Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPos, Quaternion.identity);
-        //yield return new WaitForSeconds(timeE);//Attends un délai avant de rappeler la fonction
-        //BufferEnemy();//Appel de la méthode Tampon
-    //}
-
-    /*Méthode qui sert de tampon évitant que la coroutine SpawnAnEnnemy tourne en continue
-    permettant ainsi de changer les valeurs des variables utilisées dans la coroutine 
-    pendant le laps de temps durant lequel elle est à l'arrêt*/
-    /*private void BufferEnemy()
+    public void EnemyOrientation()
     {
-        StartCoroutine(SpawnAnEnemy());//Relance la coroutine
-    }*/
+        if (this.transform.position.x > GameObject.FindGameObjectWithTag("Player").transform.position.x)
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        else
+            this.transform.rotation = Quaternion.Euler(0, -180, 0);
+    }
+
+    private void ChoiceTarget()
+    {
+        foreach (var item in potentialTarget)
+        {
+            var distance = Vector3.Distance(transform.position, item.transform.position);
+            if (distance < maxDistance)
+            {
+                targetEnemy = item;
+                maxDistance = distance;
+            }
+        }
+    }
 }
