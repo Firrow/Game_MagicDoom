@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     {
         ChoiceTarget();
         //when enemy is close to target
-        if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.5f)
+        if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.1f)
             transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
     }
 
@@ -58,5 +58,20 @@ public class Enemy : MonoBehaviour
                 maxDistance = distance;
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        {
+            EnemyAttack(collision.gameObject);
+            Debug.Log("TOUCH");
+        }
+
+    }
+
+    private void EnemyAttack(GameObject target)
+    {
+
     }
 }
