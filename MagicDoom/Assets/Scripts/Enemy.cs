@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private List<GameObject> potentialTarget = new List<GameObject>();
     private float maxDistance;
     private GameObject targetEnemy;
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
             potentialTarget.Add(item);
         }
 
-
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
         ChoiceTarget();
         EnemyOrientation();
     }
@@ -33,8 +34,9 @@ public class Enemy : MonoBehaviour
     {
         ChoiceTarget();
         //when enemy is close to target
-        if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.1f)
-            transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.3f)
+           transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
+        
     }
 
 
@@ -62,16 +64,15 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
         {
             EnemyAttack(collision.gameObject);
-            Debug.Log("TOUCH");
         }
 
     }
 
     private void EnemyAttack(GameObject target)
     {
-
+        Debug.Log("TOUCH");
     }
 }
