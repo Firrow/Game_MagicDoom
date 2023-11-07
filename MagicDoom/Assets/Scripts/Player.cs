@@ -4,15 +4,40 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int health;
+    private bool isDestroy;
+
     void Start()
+    {
+        health = 20;
+        IsDestroy = false;
+}
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void takeDamage(int damage)
     {
-        
+        this.Health -= damage;
+
+        if (this.Health <= 0)
+        {
+            IsDestroy = true;
+        }
+    }
+
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
+    public bool IsDestroy
+    {
+        get { return isDestroy; }
+        set { isDestroy = value; }
     }
 }
