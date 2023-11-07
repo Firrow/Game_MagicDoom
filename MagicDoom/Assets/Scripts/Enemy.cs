@@ -31,7 +31,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        potentialTargetList.RemoveAll(item => item == null); // Removing destroy Cauldrons after coroutine
         ChoiceTarget();
+
         if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.3f)
             transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
         EnemyOrientation();
@@ -61,7 +63,6 @@ public class Enemy : MonoBehaviour
                     maxDistance = distance;
                 }
             }
-            
         }
 
     }
@@ -77,19 +78,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator EnemyAttack(GameObject target)
     {
-        if(target.layer == LayerMask.NameToLayer("Cauldrons"))
-        {
-            target.GetComponent<Cauldron>().TakeDamage(damage);
-
-            if (target.GetComponent<Cauldron>().IsDestroy == true)
-            {
-                potentialTargetList.Remove(target.gameObject);
-                Destroy(target.gameObject);
-
-
-            }
-        }
-        else if (target.layer == LayerMask.NameToLayer("Player"))
+        if (target.layer == LayerMask.NameToLayer("Player"))
         {
             target.GetComponent<Player>().TakeDamage(damage);
 
@@ -100,4 +89,11 @@ public class Enemy : MonoBehaviour
         }
         yield return new WaitForSeconds(1.0f);
     }
+
+    public int Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
+
 }

@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     private int health;
     private bool isDestroy;
 
+    //FAIRE LA MÊME CHOSE QUE POUR LES CHAUDRONS
+
+
     void Start()
     {
         health = 20;
@@ -19,7 +22,7 @@ public class Player : MonoBehaviour
     }
 
 
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         this.Health -= damage;
 
