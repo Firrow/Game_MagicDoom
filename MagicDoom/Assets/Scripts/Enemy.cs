@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private List<GameObject> potentialTarget = new List<GameObject>();
-    private float maxDistance;
+    private List<GameObject> potentialTargetList = new List<GameObject>();
     private GameObject targetEnemy;
     private float speed;
     private int damage;
@@ -15,26 +14,24 @@ public class Enemy : MonoBehaviour
     {
         speed = 0.5f;
         damage = 2;
-        maxDistance = float.PositiveInfinity;
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
-            potentialTarget.Add(item);
+            potentialTargetList.Add(item);
         }
         foreach (var item in GameObject.FindGameObjectsWithTag("Player"))
         {
-            potentialTarget.Add(item);
+            potentialTargetList.Add(item);
         }
 
-        ChoiceTarget(potentialTarget);
+        ChoiceTarget();
         EnemyOrientation();
     }
 
 
     void Update()
     {
-        ChoiceTarget(potentialTarget);
-        //when enemy is close to target
+        ChoiceTarget();
         if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.3f)
             transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
         EnemyOrientation();
@@ -50,18 +47,21 @@ public class Enemy : MonoBehaviour
             this.transform.rotation = Quaternion.Euler(0, -180, 0);
     }
 
-    private void ChoiceTarget(List<GameObject> potentialTarget)
+    private void ChoiceTarget()
     {
-        foreach (var item in potentialTarget)
+        float maxDistance = float.PositiveInfinity;
+
+        foreach (var item in potentialTargetList)
         {
-            //Debug.Log(item.name);
-            //Debug.Log("position ennemi : " + transform.position + " ||| item name : " + item.name + " item position : " + item.transform.position);
-            var distance = Vector3.Distance(transform.position, item.transform.position);
-            if (distance < maxDistance)
-            {
-                targetEnemy = item;
-                maxDistance = distance;
+            if(item != null) {
+                var distance = Vector3.Distance(transform.position, item.transform.position);
+                if (distance < maxDistance)
+                {
+                    targetEnemy = item;
+                    maxDistance = distance;
+                }
             }
+            
         }
 
     }
@@ -79,13 +79,11 @@ public class Enemy : MonoBehaviour
     {
         if(target.layer == LayerMask.NameToLayer("Cauldrons"))
         {
-            target.GetComponent<Cauldron>().takeDamage(damage);
+            target.GetComponent<Cauldron>().TakeDamage(damage);
 
             if (target.GetComponent<Cauldron>().IsDestroy == true)
             {
-                Debug.Log(potentialTarget.Count);
-                potentialTarget.Remove(target.gameObject);
-                Debug.Log(potentialTarget.Count);
+                potentialTargetList.Remove(target.gameObject);
                 Destroy(target.gameObject);
 
 
@@ -93,7 +91,7 @@ public class Enemy : MonoBehaviour
         }
         else if (target.layer == LayerMask.NameToLayer("Player"))
         {
-            target.GetComponent<Player>().takeDamage(damage);
+            target.GetComponent<Player>().TakeDamage(damage);
 
             if (target.GetComponent<Player>().IsDestroy == true)
             {

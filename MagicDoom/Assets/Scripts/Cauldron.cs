@@ -18,7 +18,7 @@ public class Cauldron : MonoBehaviour
         
     }
 
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         this.Health -= damage;
 
