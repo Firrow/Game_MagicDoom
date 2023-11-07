@@ -67,16 +67,16 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
         {
             StartCoroutine(EnemyAttack(collision.gameObject));
         }
 
-    }
+    }*/
 
-    IEnumerator EnemyAttack(GameObject target)
+    /*IEnumerator EnemyAttack(GameObject target)
     {
         if (target.layer == LayerMask.NameToLayer("Player"))
         {
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(1.0f);
-    }
+    }*/
 
     public int Damage
     {

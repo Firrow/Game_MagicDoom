@@ -6,8 +6,9 @@ public class Player : MonoBehaviour
 {
     private int health;
     private bool isDestroy;
+    private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
 
-    //FAIRE LA MÊME CHOSE QUE POUR LES CHAUDRONS
+    private float lastAttackTime;
 
 
     void Start()
@@ -21,14 +22,48 @@ public class Player : MonoBehaviour
         
     }
 
-
-    public void TakeDamage(int damage)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        this.Health -= damage;
-
-        if (this.Health <= 0)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            IsDestroy = true;
+            enemiesImCollidingWith.Add(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        {
+            enemiesImCollidingWith.Remove(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Abort if we already attacked recently.
+        if (Time.time - lastAttackTime < 1)
+            return;
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        {
+            TakeDamage();
+            lastAttackTime = Time.time;
+        }
+    }
+
+    private void TakeDamage()
+    {
+        foreach (var enemy in enemiesImCollidingWith)
+        {
+            Health -= enemy.GetComponent<Enemy>().Damage;
+
+            Debug.Log(health);
+
+            if (Health <= 0)
+            {
+                IsDestroy = true;
+                Destroy(this.gameObject);
+            }
         }
     }
 

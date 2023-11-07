@@ -57,8 +57,6 @@ public class Cauldron : MonoBehaviour
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
 
-            Debug.Log(health);
-
             if (Health <= 0)
             {
                 IsDestroy = true;
