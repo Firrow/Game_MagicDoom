@@ -109,16 +109,25 @@ public class Player : MonoBehaviour
                 FillCauldron("bomb");
                 break;
             default:
+                Debug.Log("CHAUDRON DÉTRUIT");
                 break;
         }
     }
 
     private void FillCauldron(string typePotion)
     {
-        GameObject empty = cauldrons[typePotion].transform.GetChild(0).gameObject;
-        GameObject liquide = cauldrons[typePotion].transform.GetChild(1).gameObject;
-        empty.SetActive(false);
-        liquide.SetActive(true);
+        if (cauldrons[typePotion] != null)
+        {
+            GameObject empty = cauldrons[typePotion].transform.GetChild(0).gameObject;
+            GameObject liquide = cauldrons[typePotion].transform.GetChild(1).gameObject;
+            empty.SetActive(false);
+            liquide.SetActive(true);
+        }
+        else
+        {
+            return;
+        }
+
     }
 
 

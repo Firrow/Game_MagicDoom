@@ -63,19 +63,22 @@ public class Cauldron : MonoBehaviour
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
 
-            if (Health > defaultHealth * 0.75)
-                spriteRenderer.sprite = cauldronSprites[0];
-            else if (Health > defaultHealth * 0.5)
-                spriteRenderer.sprite = cauldronSprites[1];
-            else if (Health > defaultHealth * 0.25)
-                spriteRenderer.sprite = cauldronSprites[2];
-            else if (Health > 0)
-                spriteRenderer.sprite = cauldronSprites[3];
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            Debug.Log(this.gameObject.name + " : " + Health);
         }
+
+        if (Health > defaultHealth * 0.75)
+            spriteRenderer.sprite = cauldronSprites[0];
+        else if (Health > defaultHealth * 0.5)
+            spriteRenderer.sprite = cauldronSprites[1];
+        else if (Health > defaultHealth * 0.25)
+            spriteRenderer.sprite = cauldronSprites[2];
+        else if (Health > 0)
+            spriteRenderer.sprite = cauldronSprites[3];
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
     public int Health
