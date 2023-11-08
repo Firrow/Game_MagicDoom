@@ -8,12 +8,14 @@ public class Enemy : MonoBehaviour
     private GameObject targetEnemy;
     private float speed;
     private int damage;
+    private int health;
 
 
     void Start()
     {
         speed = 0.5f;
         damage = 2;
+        health = 10;
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -27,7 +29,6 @@ public class Enemy : MonoBehaviour
         ChoiceTarget();
         EnemyOrientation();
     }
-
 
     void Update()
     {
@@ -64,36 +65,30 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    // TODO : compléter les dégâts en fonction du sortilège du joueur
+    private void TakeDamage()
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") || collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
+        // Calcul de la santé à faire ici (en fonction sortilège joueur)
+
+        if (Health <= 0)
         {
-            StartCoroutine(EnemyAttack(collision.gameObject));
+            Destroy(this.gameObject);
         }
-
-    }*/
-
-    /*IEnumerator EnemyAttack(GameObject target)
-    {
-        if (target.layer == LayerMask.NameToLayer("Player"))
-        {
-            target.GetComponent<Player>().TakeDamage(damage);
-
-            if (target.GetComponent<Player>().IsDestroy == true)
-            {
-                Debug.Log("Game Over");
-            }
-        }
-        yield return new WaitForSeconds(1.0f);
-    }*/
+    }
 
     public int Damage
     {
         get { return damage; }
         set { damage = value; }
     }
+
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
 
 }

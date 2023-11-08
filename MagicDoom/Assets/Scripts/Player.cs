@@ -5,17 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private int health;
-    private bool isDestroy;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
-
-    private float lastAttackTime;
+    private float lastDamageTime;
 
 
     void Start()
     {
         health = 20;
-        IsDestroy = false;
-}
+    }
 
     void Update()
     {
@@ -41,13 +38,13 @@ public class Player : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // Abort if we already attacked recently.
-        if (Time.time - lastAttackTime < 1)
+        if (Time.time - lastDamageTime < 1)
             return;
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
             TakeDamage();
-            lastAttackTime = Time.time;
+            lastDamageTime = Time.time;
         }
     }
 
@@ -57,11 +54,8 @@ public class Player : MonoBehaviour
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
 
-            Debug.Log(health);
-
             if (Health <= 0)
             {
-                IsDestroy = true;
                 Destroy(this.gameObject);
             }
         }
@@ -71,11 +65,5 @@ public class Player : MonoBehaviour
     {
         get { return health; }
         set { health = value; }
-    }
-
-    public bool IsDestroy
-    {
-        get { return isDestroy; }
-        set { isDestroy = value; }
     }
 }
