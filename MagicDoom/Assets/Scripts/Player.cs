@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private float speed;
     private int health;
+    private Vector2 movement;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
+    private Rigidbody2D rb;
 
     void Start()
     {
         health = 20;
+        speed = 2;
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        float moveVertical = Input.GetAxisRaw("Vertical");
+
+        movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
+
+        rb.velocity = movement;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
