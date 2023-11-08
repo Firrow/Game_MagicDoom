@@ -520,6 +520,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: type
+      value: bomb
+      objectReference: {fileID: 0}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: Cauldron5
@@ -605,7 +609,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3906149465004374117, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 5345833928099126243, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 882941806254613658, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4075069981755945913, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 770251003055088048, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 3365356009235950560, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 210105218258503540, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1722944483024479260, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
@@ -620,7 +632,7 @@ GameObject:
   - component: {fileID: 1714965953}
   - component: {fileID: 1714965955}
   - component: {fileID: 1714965954}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1649,6 +1661,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: type
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: Cauldron4
@@ -1734,7 +1750,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5345833928099126243, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 882941806254613658, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4075069981755945913, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1040491956431716612, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 770251003055088048, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 3365356009235950560, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4810906569871740232, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1722944483024479260, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
@@ -1807,6 +1831,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: type
+      value: wave
+      objectReference: {fileID: 0}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: Cauldron2
@@ -1892,7 +1920,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3906149465004374117, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 882941806254613658, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4075069981755945913, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1040491956431716612, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 770251003055088048, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 210105218258503540, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4810906569871740232, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1722944483024479260, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
@@ -1904,6 +1940,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: type
+      value: laser
+      objectReference: {fileID: 0}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: Cauldron3
@@ -1989,7 +2029,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3906149465004374117, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 5345833928099126243, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 882941806254613658, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1040491956431716612, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4075069981755945913, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 3365356009235950560, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 210105218258503540, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4810906569871740232, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1722944483024479260, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
@@ -2067,6 +2116,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1017675656669807930, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017675656669807930, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2080,11 +2133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860011193042710051, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.15
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3860011193042710051, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.02
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 3860011193042710051, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2118,6 +2171,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7254952677792590015, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759931606627055506, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2131,13 +2192,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: type
+      value: life
+      objectReference: {fileID: 0}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: Cauldron1
       objectReference: {fileID: 0}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3589199986285027163, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Pivot.x
@@ -2220,7 +2285,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3906149465004374117, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 5345833928099126243, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4075069981755945913, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 1040491956431716612, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 770251003055088048, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 3365356009235950560, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 210105218258503540, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+    - {fileID: 4810906569871740232, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94897e933b9bc90419e423c759d52e36, type: 3}

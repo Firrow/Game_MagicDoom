@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5504627817464073713}
   - component: {fileID: 8667929990983539197}
   - component: {fileID: 2338650220284291999}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PurpleGem
-  m_TagString: Untagged
+  m_TagString: Purple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

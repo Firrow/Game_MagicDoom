@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,12 +9,17 @@ public class Player : MonoBehaviour
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private Rigidbody2D rb;
+    private Dictionary<string, GameObject> cauldrons = new Dictionary<string, GameObject>();
 
     void Start()
     {
         health = 20;
         speed = 2;
         rb = this.GetComponent<Rigidbody2D>();
+        foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
+        {
+            cauldrons.Add(cauldron.GetComponent<Cauldron>().type, cauldron.gameObject);
+        }
     }
 
     void FixedUpdate()
@@ -23,21 +27,19 @@ public class Player : MonoBehaviour
         MovePlayer();
     }
 
-    private void MovePlayer()
-    {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
 
-        movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
 
-        rb.velocity = movement;
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
             enemiesImCollidingWith.Add(collision.gameObject);
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Gems"))
+        {
+            FindCauldron(collision.transform.tag);
+            Destroy(collision.gameObject);
         }
     }
 
@@ -62,6 +64,17 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    private void MovePlayer()
+    {
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        float moveVertical = Input.GetAxisRaw("Vertical");
+
+        movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
+
+        rb.velocity = movement;
+    }
+
     private void TakeDamage()
     {
         foreach (var enemy in enemiesImCollidingWith)
@@ -74,6 +87,43 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    private void FindCauldron(string typeGem)
+    {
+        switch (typeGem)
+        {
+            // fill cauldrons thanks to gem
+            case "Yellow":
+                FillCauldron("laser");
+                break;
+            case "Green":
+                FillCauldron("wall");
+                break;
+            case "Red":
+                FillCauldron("life");
+                break;
+            case "Blue":
+                FillCauldron("wave");
+                break;
+            case "Purple":
+                FillCauldron("bomb");
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void FillCauldron(string typePotion)
+    {
+        GameObject empty = cauldrons[typePotion].transform.GetChild(0).gameObject;
+        GameObject liquide = cauldrons[typePotion].transform.GetChild(1).gameObject;
+        empty.SetActive(false);
+        liquide.SetActive(true);
+    }
+
+
+
+
 
     public int Health
     {

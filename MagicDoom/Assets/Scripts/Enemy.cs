@@ -40,6 +40,11 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.3f)
             transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
         EnemyOrientation();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10);
+        }
     }
 
 

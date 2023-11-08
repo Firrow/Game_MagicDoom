@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7873916749234867276}
   - component: {fileID: 1534709459749887450}
   - component: {fileID: 4453203081806994726}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BlueGem
-  m_TagString: Untagged
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

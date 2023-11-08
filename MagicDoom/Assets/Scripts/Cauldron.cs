@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
+    public string type;
+
     private int health;
     private int defaultHealth;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private SpriteRenderer spriteRenderer;
+
     [SerializeField] Sprite[] cauldronSprites;
 
 
@@ -59,11 +62,6 @@ public class Cauldron : MonoBehaviour
         foreach (var enemy in enemiesImCollidingWith)
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
-
-            /*if (Health <= 0)
-            {
-                Destroy(this.gameObject);
-            }*/
 
             if (Health > defaultHealth * 0.75)
                 spriteRenderer.sprite = cauldronSprites[0];
