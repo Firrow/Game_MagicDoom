@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     private int damage;
     private int health;
 
+    [SerializeField] GameObject[] gems;
+
 
     void Start()
     {
@@ -68,14 +70,25 @@ public class Enemy : MonoBehaviour
     }
 
     // TODO : compléter les dégâts en fonction du sortilège du joueur
-    private void TakeDamage()
+    private void TakeDamage(int damage)
     {
         // Calcul de la santé à faire ici (en fonction sortilège joueur)
+        health -= damage;
 
         if (Health <= 0)
         {
+            bool gemWillBeDrop = (Random.Range(0, 10) >= 7 ? true : false);
+
+            if (gemWillBeDrop)
+                spawnGem();
+
             Destroy(this.gameObject);
         }
+    }
+
+    private void spawnGem()
+    {
+        Instantiate(gems[Random.Range(0, 5)], this.transform.position, this.transform.rotation);
     }
 
     public int Damage

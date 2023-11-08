@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
 
-
     void Start()
     {
         health = 20;
