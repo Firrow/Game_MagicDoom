@@ -165,3 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fb01a23dc244440b01682c8161e9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cauldronSprites:
+  - {fileID: 21300000, guid: 76d304589e1129e4eb8b59fea11f7f2a, type: 3}
+  - {fileID: 21300000, guid: 6cc1095d0e1436d41a8c53c8ce5330cf, type: 3}
+  - {fileID: 21300000, guid: d19b46e58b1b2c843934911379662197, type: 3}
+  - {fileID: 21300000, guid: ec48be2d34fbf684c86f69e277777a98, type: 3}
