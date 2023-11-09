@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private int health;
     private bool canMove;
     private Vector2 movement;
+    private Quaternion actualRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private Rigidbody2D rb;
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour
         }
         else
             MovePlayer();
+
+        actualRotationSens = this.transform.rotation;
     }
 
     private void Update()
@@ -124,6 +127,7 @@ public class Player : MonoBehaviour
         float moveVertical = Input.GetAxisRaw("Vertical");
 
         movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
+        PlayerOrientation(moveHorizontal);
 
         rb.velocity = movement;
     }
@@ -144,6 +148,18 @@ public class Player : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    public void PlayerOrientation(float moveHorizontal)
+    {
+        if (moveHorizontal > 0)
+        {
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (moveHorizontal < 0)
+            this.transform.rotation = Quaternion.Euler(0, -180, 0);
+        else
+            this.transform.rotation = actualRotationSens;
     }
 
     private void FindCauldron(string typeGem)
@@ -198,11 +214,12 @@ public class Player : MonoBehaviour
         switch (spell.tag)
         {
             case "laser":
-                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, 0));
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                     break;
             case "bomb":
                 break;
             case "wave":
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             case "life":
                 Health += 10;
@@ -239,5 +256,10 @@ public class Player : MonoBehaviour
         set { canMove = value; }
     }
 
+    public Quaternion ActualRotation
+    {
+        get { return actualRotationSens; }
+        set { actualRotationSens = value; }
+    }
 
 }
