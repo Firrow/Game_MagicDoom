@@ -195,11 +195,23 @@ public class Player : MonoBehaviour
 
     private void UseSpell(GameObject spell)
     {
-        if (spell.tag == "laser")
+        switch (spell.tag)
         {
-            Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, 0, 0));
+            case "laser":
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, 0));
+                    break;
+            case "bomb":
+                break;
+            case "wave":
+                break;
+            case "life":
+                break;
+            case "wall":
+                break;
+            default:
+                break;
         }
-        //Faire en fonction des autres sorts
+        
     }
 
 
