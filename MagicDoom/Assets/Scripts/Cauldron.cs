@@ -25,10 +25,6 @@ public class Cauldron : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    void Update()
-    {
-
-    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,25 +56,6 @@ public class Cauldron : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            Debug.Log("JOUEUR TOUCHE CHAUDRON");
-            // Get potion
-            if (Input.GetKeyDown(KeyCode.Space)) // changer pour input "GetPotion"
-            {
-                if (player.ActualSpell == null) // Player can get a unique spell at the same time
-                {
-                    // Get spell in link with the touched cauldron
-                    player.ActualSpell = this.spell;
-
-                    // Emptying the cauldron
-                    player.ChangeContentInCauldron(this.type, false);
-                }
-            }
-        }
-    }
 
     private void TakeDamage()
     {

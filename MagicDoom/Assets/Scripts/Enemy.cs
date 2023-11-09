@@ -41,10 +41,12 @@ public class Enemy : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
         EnemyOrientation();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        // UNIQUEMENT POUR LE DÉVELOPPEMENT : A ENLEVER QUAND PLUS NÉCESSAIRE
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(10);
         }
+        //---------------------------------------------------------------------
     }
 
 

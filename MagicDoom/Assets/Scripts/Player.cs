@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private Dictionary<string, GameObject> cauldrons = new Dictionary<string, GameObject>();
     private GameObject spellPoint;
     private GameObject actualSpell;
-    private string typeCauldron;
+    private Cauldron touchedCauldron;
 
 
     void Start()
@@ -32,14 +32,30 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
+    }
 
-        if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell"
+    private void Update()
+    {
+        // Get potion
+        if (Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion"
+        {
+            if (ActualSpell == null) // Player can get a unique spell at the same time
+            {
+                Debug.Log("nom sortilège : " + touchedCauldron.spell.name);
+                // Get spell in link with the touched cauldron
+                ActualSpell = touchedCauldron.spell;
+
+                // Emptying the cauldron
+                ChangeContentInCauldron(touchedCauldron.type, false);
+            }
+        }
+        else if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell"
         {
             Debug.Log("TIRER !!!!!!!!!!!");
             UseSpell(actualSpell);
+            ActualSpell = null;
         }
     }
-
 
 
 
@@ -56,14 +72,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
-        {
-            enemiesImCollidingWith.Remove(collision.gameObject);
-        }
-    }
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         // Abort if we already attacked recently.
@@ -75,18 +83,32 @@ public class Player : MonoBehaviour
             TakeDamage();
             lastDamageTime = Time.time;
         }
-        /*else if (collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
-        {
-            // Get potion
-            if (actualSpell == null && Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion"
-            {
-                // Get spell in link with the touched cauldron
-                actualSpell = collision.gameObject.GetComponent<Cauldron>().spell;
+    }
 
-                // Emptying the cauldron
-                ChangeContentInCauldron(collision.gameObject.GetComponent<Cauldron>().type, false);
-            }
-        }*/
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        {
+            enemiesImCollidingWith.Remove(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
+        {
+            // Get which cauldron player touched
+            touchedCauldron = collision.gameObject.GetComponent<Cauldron>();
+            Debug.Log("touche le chaudron (dans player.cs) : " + touchedCauldron.name);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
+        {
+            touchedCauldron = null;
+        }
     }
 
 
@@ -157,9 +179,7 @@ public class Player : MonoBehaviour
             }
         }
         else
-        {
             return;
-        }
     }
 
     private void UseSpell(GameObject spell)
