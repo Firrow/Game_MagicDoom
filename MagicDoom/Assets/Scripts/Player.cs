@@ -44,11 +44,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Get potion
-        if (Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion"
+        if (Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion" KeyCode.E Input.GetAxisRaw("Horizontal"); 
         {
             if (ActualSpell == null) // Player can get a unique spell at the same time
             {
-                Debug.Log("nom sortilège : " + touchedCauldron.spell.name);
                 // Get spell in link with the touched cauldron
                 ActualSpell = touchedCauldron.spell;
 
@@ -56,7 +55,7 @@ public class Player : MonoBehaviour
                 ChangeContentInCauldron(touchedCauldron.type, false);
             }
         }
-        else if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell"
+        else if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell" KeyCode.Mouse0
         {
             // penser à lancer lorsque animation terminée !
             UseSpell(actualSpell);
