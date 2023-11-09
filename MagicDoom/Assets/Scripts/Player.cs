@@ -195,7 +195,11 @@ public class Player : MonoBehaviour
 
     private void UseSpell(GameObject spell)
     {
-        Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, 0, 0));
+        if (spell.tag == "laser")
+        {
+            Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, 0, 0));
+        }
+        //Faire en fonction des autres sorts
     }
 
 
