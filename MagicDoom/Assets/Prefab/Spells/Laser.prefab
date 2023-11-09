@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3707468720227956594}
   - component: {fileID: 6752117059443956697}
   - component: {fileID: 2354940458345494631}
+  - component: {fileID: 7402020573890463041}
   m_Layer: 12
   m_Name: Laser
   m_TagString: Untagged
@@ -120,7 +121,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0.5}
     oldSize: {x: 50, y: 10.009766}
     newSize: {x: 50, y: 10.009766}
     adaptiveTilingThreshold: 0.5
@@ -147,3 +148,15 @@ PolygonCollider2D:
       - {x: 50, y: 0.5859375}
       - {x: 23.510742, y: 0.5859375}
   m_UseDelaunayMesh: 0
+--- !u!114 &7402020573890463041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178068675383023810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091b7f31ffdc2ac4c9b621a9a14dde95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
     }
 
     // TODO : compléter les dégâts en fonction du sortilège du joueur
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         // Calcul de la santé à faire ici (en fonction sortilège joueur)
         health -= damage;

@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     private float speed;
     private int health;
+    private bool canMove;
     private Vector2 movement;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         spellPoint = this.transform.GetChild(0).gameObject;
         actualSpell = null;
+        canMove = true;
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -31,7 +33,12 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if (!CanMove)
+        {
+            DontMovePlayer();
+        }
+        else
+            MovePlayer();
     }
 
     private void Update()
@@ -51,7 +58,7 @@ public class Player : MonoBehaviour
         }
         else if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell"
         {
-            Debug.Log("TIRER !!!!!!!!!!!");
+            // penser à lancer lorsque animation terminée !
             UseSpell(actualSpell);
             ActualSpell = null;
         }
@@ -99,7 +106,6 @@ public class Player : MonoBehaviour
         {
             // Get which cauldron player touched
             touchedCauldron = collision.gameObject.GetComponent<Cauldron>();
-            Debug.Log("touche le chaudron (dans player.cs) : " + touchedCauldron.name);
         }
     }
 
@@ -120,6 +126,11 @@ public class Player : MonoBehaviour
         movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
 
         rb.velocity = movement;
+    }
+
+    private void DontMovePlayer()
+    {
+        rb.velocity = Vector2.zero;
     }
 
     private void TakeDamage()
@@ -202,5 +213,12 @@ public class Player : MonoBehaviour
         get { return actualSpell; }
         set { actualSpell = value; }
     }
+
+    public bool CanMove
+    {
+        get { return canMove; }
+        set { canMove = value; }
+    }
+
 
 }
