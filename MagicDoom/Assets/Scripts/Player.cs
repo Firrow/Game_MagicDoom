@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
         // Get potion
         if (Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion" KeyCode.E Input.GetAxisRaw("Horizontal"); 
         {
-            Debug.Log("touchedCauldron : " + touchedCauldron);
             if (ActualSpell == null) // Player can get a unique spell at the same time
             {
                 // Get spell in link with the touched cauldron
@@ -227,6 +226,8 @@ public class Player : MonoBehaviour
                 // BARRE DE VIE À AUGMENTER
                 break;
             case "wall":
+                Debug.Log("x : " + Input.mousePosition.x + " y : " + Input.mousePosition.y); //PROBLÈME POSITION
+                Instantiate(spell, new Vector2(Input.mousePosition.x, Input.mousePosition.y), Quaternion.Euler(0, actualRotationSens.y * 180, 0)); // POSITION DE LA SOURIS DU JOUEUR
                 break;
             default:
                 break;

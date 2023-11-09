@@ -18,9 +18,7 @@ public class spellWave : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(sensShoot);
         movement = new Vector3(sensShoot.x, 0, 0);
-        Debug.Log("movement.x : " + movement.x);
 
         gameObject.transform.Translate(movement * speed * 5 * Time.deltaTime);
         gameObject.transform.localScale += new Vector3(0.004f, 0.004f, 0);

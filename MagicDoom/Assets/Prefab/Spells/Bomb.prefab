@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6943303798138942584}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bomb
   m_TagString: bomb
   m_Icon: {fileID: 0}
