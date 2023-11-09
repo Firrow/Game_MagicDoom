@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         // Get potion
         if (Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion" KeyCode.E Input.GetAxisRaw("Horizontal"); 
         {
+            Debug.Log("touchedCauldron : " + touchedCauldron);
             if (ActualSpell == null) // Player can get a unique spell at the same time
             {
                 // Get spell in link with the touched cauldron
@@ -204,6 +205,9 @@ public class Player : MonoBehaviour
             case "wave":
                 break;
             case "life":
+                Health += 10;
+                // FEEDBACK À AJOUTER
+                // BARRE DE VIE À AUGMENTER
                 break;
             case "wall":
                 break;
