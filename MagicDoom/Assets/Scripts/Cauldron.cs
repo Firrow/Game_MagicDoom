@@ -5,12 +5,14 @@ using UnityEngine;
 public class Cauldron : MonoBehaviour
 {
     public string type;
+    public GameObject spell;
 
     private int health;
     private int defaultHealth;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private SpriteRenderer spriteRenderer;
+    private Player player;
 
     [SerializeField] Sprite[] cauldronSprites;
 
@@ -20,6 +22,7 @@ public class Cauldron : MonoBehaviour
         defaultHealth = 100;
         health = defaultHealth;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -57,13 +60,32 @@ public class Cauldron : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Debug.Log("JOUEUR TOUCHE CHAUDRON");
+            // Get potion
+            if (Input.GetKeyDown(KeyCode.Space)) // changer pour input "GetPotion"
+            {
+                if (player.ActualSpell == null) // Player can get a unique spell at the same time
+                {
+                    // Get spell in link with the touched cauldron
+                    player.ActualSpell = this.spell;
+
+                    // Emptying the cauldron
+                    player.ChangeContentInCauldron(this.type, false);
+                }
+            }
+        }
+    }
+
     private void TakeDamage()
     {
         foreach (var enemy in enemiesImCollidingWith)
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
 
-            Debug.Log(this.gameObject.name + " : " + Health);
         }
 
         if (Health > defaultHealth * 0.75)

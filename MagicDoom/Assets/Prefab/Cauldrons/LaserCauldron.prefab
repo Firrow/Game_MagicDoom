@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: type
       value: laser
       objectReference: {fileID: 0}
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: spell
+      value: 
+      objectReference: {fileID: 4178068675383023810, guid: 214640632b67e194c916d7637ad7dde0, type: 3}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: LaserCauldron

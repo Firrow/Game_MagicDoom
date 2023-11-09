@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: type
       value: wall
       objectReference: {fileID: 0}
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: spell
+      value: 
+      objectReference: {fileID: 1715013196301404953, guid: 6d2a5fb4585b57348a0e3b3bd3029800, type: 3}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: WallCauldron

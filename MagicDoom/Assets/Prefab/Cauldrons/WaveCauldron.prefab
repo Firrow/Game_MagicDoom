@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: type
       value: wave
       objectReference: {fileID: 0}
+    - target: {fileID: 1407662904044310635, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
+      propertyPath: spell
+      value: 
+      objectReference: {fileID: 4944054744971872113, guid: 57a6f642c98896d4ea2dbe06ffc9eb1c, type: 3}
     - target: {fileID: 2789027282151969968, guid: 94897e933b9bc90419e423c759d52e36, type: 3}
       propertyPath: m_Name
       value: WaveCauldron

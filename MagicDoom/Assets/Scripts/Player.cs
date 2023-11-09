@@ -10,12 +10,19 @@ public class Player : MonoBehaviour
     private float lastDamageTime;
     private Rigidbody2D rb;
     private Dictionary<string, GameObject> cauldrons = new Dictionary<string, GameObject>();
+    private GameObject spellPoint;
+    private GameObject actualSpell;
+    private string typeCauldron;
+
 
     void Start()
     {
         health = 20;
         speed = 2;
         rb = this.GetComponent<Rigidbody2D>();
+        spellPoint = this.transform.GetChild(0).gameObject;
+        actualSpell = null;
+
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
             cauldrons.Add(cauldron.GetComponent<Cauldron>().type, cauldron.gameObject);
@@ -25,6 +32,12 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
+
+        if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell"
+        {
+            Debug.Log("TIRER !!!!!!!!!!!");
+            UseSpell(actualSpell);
+        }
     }
 
 
@@ -62,6 +75,18 @@ public class Player : MonoBehaviour
             TakeDamage();
             lastDamageTime = Time.time;
         }
+        /*else if (collision.gameObject.layer == LayerMask.NameToLayer("Cauldrons"))
+        {
+            // Get potion
+            if (actualSpell == null && Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion"
+            {
+                // Get spell in link with the touched cauldron
+                actualSpell = collision.gameObject.GetComponent<Cauldron>().spell;
+
+                // Emptying the cauldron
+                ChangeContentInCauldron(collision.gameObject.GetComponent<Cauldron>().type, false);
+            }
+        }*/
     }
 
 
@@ -94,40 +119,52 @@ public class Player : MonoBehaviour
         {
             // fill cauldrons thanks to gem
             case "Yellow":
-                FillCauldron("laser");
+                ChangeContentInCauldron("laser", true);
                 break;
             case "Green":
-                FillCauldron("wall");
+                ChangeContentInCauldron("wall", true);
                 break;
             case "Red":
-                FillCauldron("life");
+                ChangeContentInCauldron("life", true);
                 break;
             case "Blue":
-                FillCauldron("wave");
+                ChangeContentInCauldron("wave", true);
                 break;
             case "Purple":
-                FillCauldron("bomb");
+                ChangeContentInCauldron("bomb", true);
                 break;
             default:
-                Debug.Log("CHAUDRON DÉTRUIT");
                 break;
         }
     }
 
-    private void FillCauldron(string typePotion)
+    public void ChangeContentInCauldron(string typePotion, bool fill)
     {
         if (cauldrons[typePotion] != null)
         {
             GameObject empty = cauldrons[typePotion].transform.GetChild(0).gameObject;
             GameObject liquide = cauldrons[typePotion].transform.GetChild(1).gameObject;
-            empty.SetActive(false);
-            liquide.SetActive(true);
+
+            if (fill)
+            {
+                empty.SetActive(false);
+                liquide.SetActive(true);
+            }
+            else
+            {
+                empty.SetActive(true);
+                liquide.SetActive(false);
+            }
         }
         else
         {
             return;
         }
+    }
 
+    private void UseSpell(GameObject spell)
+    {
+        Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, 0, 0));
     }
 
 
@@ -139,4 +176,11 @@ public class Player : MonoBehaviour
         get { return health; }
         set { health = value; }
     }
+
+    public GameObject ActualSpell
+    {
+        get { return actualSpell; }
+        set { actualSpell = value; }
+    }
+
 }
