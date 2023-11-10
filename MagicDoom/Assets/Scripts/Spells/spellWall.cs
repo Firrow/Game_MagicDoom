@@ -6,14 +6,18 @@ public class spellWall : MonoBehaviour
 {
     private float lastDamageTime;
     private int health;
-    private int damage;
+    private int defaultHealth;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField] Sprite[] wallSprites;
 
 
     void Start()
     {
-        Health = 30;
-        damage = 2;
+        defaultHealth = 30;
+        Health = defaultHealth;
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
 
@@ -34,7 +38,7 @@ public class spellWall : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            TakeDamage(damage);
+            TakeDamage();
             lastDamageTime = Time.time;
         }
     }
@@ -47,17 +51,22 @@ public class spellWall : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
         foreach (var enemy in enemiesImCollidingWith)
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
+        }
 
-            //FEEDBACK DESTRUCTION WALL
-            if (Health <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+        if (Health > defaultHealth * 0.67)
+            spriteRenderer.sprite = wallSprites[0];
+        else if (Health > defaultHealth * 0.33)
+            spriteRenderer.sprite = wallSprites[1];
+        else if (Health > 0)
+            spriteRenderer.sprite = wallSprites[2];
+        else
+        {
+            Destroy(this.gameObject);
         }
     }
 

@@ -19,7 +19,7 @@ public class Cauldron : MonoBehaviour
     void Start()
     {
         defaultHealth = 100;
-        health = defaultHealth;
+        Health = defaultHealth;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
