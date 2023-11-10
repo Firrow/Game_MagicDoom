@@ -17,6 +17,7 @@ public class spellWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("touched ! ");
+        //Ajouter le wall à la liste des target ?
         //récupère l'ennemi
         //choiceTarget
     }

@@ -5,7 +5,7 @@ public class SpawnZone : MonoBehaviour
 {
     public GameObject enemy;
 
-    private float delay = 2f; //à voir si temps aléatoire ou évolu
+    private float delay = 5f; //à voir si temps aléatoire ou évolu
 
     private float centerZoneX;
     private float centerZoneY;

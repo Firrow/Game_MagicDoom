@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     private float speed;
     private int damage;
     private int health;
+    private Rigidbody2D rb;
+    private bool isCollided;
+    private Vector3 stopPosition;
 
     [SerializeField] GameObject[] gems;
 
@@ -18,6 +21,8 @@ public class Enemy : MonoBehaviour
         speed = 0.5f;
         damage = 2;
         health = 10;
+        isCollided = false;
+        rb = this.GetComponent<Rigidbody2D>();
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -37,8 +42,11 @@ public class Enemy : MonoBehaviour
         potentialTargetList.RemoveAll(item => item == null); // Removing destroy Cauldrons after coroutine
         ChoiceTarget();
 
-        if (Vector2.Distance(transform.position, targetEnemy.transform.position) > 0.3f)
-            transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
+
+        if (!isCollided)
+        {
+            MoveEnemy();
+        }
         EnemyOrientation();
 
         // UNIQUEMENT POUR LE DÉVELOPPEMENT : A ENLEVER QUAND PLUS NÉCESSAIRE
@@ -49,6 +57,25 @@ public class Enemy : MonoBehaviour
         //---------------------------------------------------------------------
     }
 
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Enemies"))
+        {
+            isCollided = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isCollided = false;
+    }
+
+    private void MoveEnemy()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
+    }
 
 
     public void EnemyOrientation()

@@ -23,6 +23,10 @@ public class Cauldron : MonoBehaviour
         spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        //Debug.Log("santé : " + Health);
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
