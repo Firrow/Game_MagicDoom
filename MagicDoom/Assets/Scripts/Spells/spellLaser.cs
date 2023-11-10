@@ -19,7 +19,8 @@ public class spellLaser : MonoBehaviour
         Destroy(this.gameObject, 2.0f);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
