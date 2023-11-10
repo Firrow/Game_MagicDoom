@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private GameObject spellPoint;
     private GameObject actualSpell;
     private Cauldron touchedCauldron;
+    private Vector2 mousePosition;
 
 
     void Start()
@@ -60,6 +61,8 @@ public class Player : MonoBehaviour
         }
         else if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell" KeyCode.Mouse0
         {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             // penser à lancer lorsque animation terminée !
             UseSpell(actualSpell);
             ActualSpell = null;
@@ -226,8 +229,7 @@ public class Player : MonoBehaviour
                 // BARRE DE VIE À AUGMENTER
                 break;
             case "wall":
-                Debug.Log("x : " + Input.mousePosition.x + " y : " + Input.mousePosition.y); //PROBLÈME POSITION
-                Instantiate(spell, new Vector2(Input.mousePosition.x, Input.mousePosition.y), Quaternion.Euler(0, actualRotationSens.y * 180, 0)); // POSITION DE LA SOURIS DU JOUEUR
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0)); // POSITION DE LA SOURIS DU JOUEUR
                 break;
             default:
                 break;

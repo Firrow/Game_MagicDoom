@@ -12,7 +12,6 @@ public class Cauldron : MonoBehaviour
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private SpriteRenderer spriteRenderer;
-    private Player player;
 
     [SerializeField] Sprite[] cauldronSprites;
 
@@ -22,7 +21,6 @@ public class Cauldron : MonoBehaviour
         defaultHealth = 100;
         health = defaultHealth;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
 

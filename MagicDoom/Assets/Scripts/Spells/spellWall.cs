@@ -11,6 +11,17 @@ public class spellWall : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("WALL IS HERE");
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("touched ! ");
+        //récupère l'ennemi
+        //choiceTarget
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("touched STAY ! ");
     }
 }

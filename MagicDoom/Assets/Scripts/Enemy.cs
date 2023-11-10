@@ -54,9 +54,9 @@ public class Enemy : MonoBehaviour
     public void EnemyOrientation()
     {
         if (this.transform.position.x > targetEnemy.transform.position.x)
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        else
             this.transform.rotation = Quaternion.Euler(0, -180, 0);
+        else
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void ChoiceTarget()
