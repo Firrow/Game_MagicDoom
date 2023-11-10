@@ -9,9 +9,7 @@ public class Enemy : MonoBehaviour
     private float speed;
     private int damage;
     private int health;
-    private Rigidbody2D rb;
     private bool isCollided;
-    private Vector3 stopPosition;
 
     [SerializeField] GameObject[] gems;
 
@@ -22,7 +20,6 @@ public class Enemy : MonoBehaviour
         damage = 2;
         health = 10;
         isCollided = false;
-        rb = this.GetComponent<Rigidbody2D>();
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -103,7 +100,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // TODO : compléter les dégâts en fonction du sortilège du joueur
     public void TakeDamage(int damage)
     {
         // Calcul de la santé à faire ici (en fonction sortilège joueur)

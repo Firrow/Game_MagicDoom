@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private float lastDamageTime;
     private Rigidbody2D rb;
     private Dictionary<string, GameObject> cauldrons = new Dictionary<string, GameObject>();
-    private GameObject spellPoint;
     private GameObject actualSpell;
     private Cauldron touchedCauldron;
     private Vector2 mousePosition;
@@ -20,10 +19,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        health = 20;
+        Health = 20;
         speed = 2;
         rb = this.GetComponent<Rigidbody2D>();
-        spellPoint = this.transform.GetChild(0).gameObject;
         actualSpell = null;
         canMove = true;
 
@@ -213,6 +211,8 @@ public class Player : MonoBehaviour
 
     private void UseSpell(GameObject spell)
     {
+        GameObject spellPoint = this.transform.GetChild(0).gameObject;
+
         switch (spell.tag)
         {
             case "laser":
