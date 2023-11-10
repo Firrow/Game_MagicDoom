@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9047948167698761520}
   - component: {fileID: 537338353422111282}
-  - component: {fileID: 2135019752918549572}
+  - component: {fileID: 1003750730047531964}
   - component: {fileID: 4725218860201412920}
+  - component: {fileID: 2135019752918549572}
   m_Layer: 12
   m_Name: Wave
   m_TagString: wave
@@ -86,18 +87,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2135019752918549572
-MonoBehaviour:
+--- !u!50 &1003750730047531964
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944054744971872113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2016ac3af476d4287fbe8e78f52bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
 --- !u!60 &4725218860201412920
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -127,7 +143,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -255,3 +271,15 @@ PolygonCollider2D:
       - {x: -0.22770691, y: 0.95409405}
       - {x: -0.26966417, y: 0.97593963}
   m_UseDelaunayMesh: 0
+--- !u!114 &2135019752918549572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944054744971872113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2016ac3af476d4287fbe8e78f52bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
