@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private int health;
     private int spawnRateGems;
     private int collisionCount;
+    private Animator animator;
 
     [SerializeField] GameObject[] gems;
 
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
         Health = 12;
         spawnRateGems = 5;
         collisionCount = 0;
+        animator = this.GetComponent<Animator>();
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour
 
         if (collisionCount == 0)
         {
+            animator.SetBool("isAttacking", false);
             MoveEnemy();
         }
         EnemyOrientation();
@@ -63,6 +66,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.layer != LayerMask.NameToLayer("Enemies"))
         {
             collisionCount++;
+            animator.SetBool("isAttacking", true);
         }
     }
 
