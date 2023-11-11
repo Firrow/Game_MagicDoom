@@ -9,7 +9,6 @@ public class spellWall : MonoBehaviour
     private int defaultHealth;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
-    private PolygonCollider2D collider;
 
     [SerializeField] Sprite[] wallSprites;
 
@@ -19,7 +18,6 @@ public class spellWall : MonoBehaviour
         defaultHealth = 50;
         Health = defaultHealth;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
-        collider = this.GetComponent<PolygonCollider2D>();
     }
 
 
@@ -87,6 +85,8 @@ public class spellWall : MonoBehaviour
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
     }
+
+
 
     public int Health
     {

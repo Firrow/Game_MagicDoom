@@ -219,6 +219,7 @@ public class Player : MonoBehaviour
                 Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                     break;
             case "bomb":
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             case "wave":
                 Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
@@ -229,7 +230,7 @@ public class Player : MonoBehaviour
                 // BARRE DE VIE À AUGMENTER
                 break;
             case "wall":
-                Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0)); // POSITION DE LA SOURIS DU JOUEUR
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             default:
                 break;
