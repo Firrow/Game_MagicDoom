@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private int damage;
     private int health;
     private bool isCollided;
+    private int spawnRateGems;
 
     [SerializeField] GameObject[] gems;
 
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
         damage = 2;
         health = 10;
         isCollided = false;
+        spawnRateGems = 5;
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -102,12 +104,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // Calcul de la santé à faire ici (en fonction sortilège joueur)
         health -= damage;
 
         if (Health <= 0)
         {
-            bool gemWillBeDrop = (Random.Range(0, 10) >= 7 ? true : false);
+            bool gemWillBeDrop = (Random.Range(0, 10) >= spawnRateGems ? true : false);
 
             if (gemWillBeDrop)
                 spawnGem();
