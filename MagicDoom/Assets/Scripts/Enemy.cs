@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     {
         speed = 0.5f;
         damage = 2;
-        health = 10;
+        Health = 12;
         spawnRateGems = 5;
         collisionCount = 0;
 
@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
             MoveEnemy();
         }
         EnemyOrientation();
+
 
         // UNIQUEMENT POUR LE DÉVELOPPEMENT : A ENLEVER QUAND PLUS NÉCESSAIRE
         if (Input.GetKeyDown(KeyCode.Space))

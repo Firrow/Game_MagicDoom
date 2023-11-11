@@ -9,7 +9,7 @@ public class spellLaser : MonoBehaviour
 
     void Start()
     {
-        damage = 10;
+        damage = 12;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.CanMove = false;
     }

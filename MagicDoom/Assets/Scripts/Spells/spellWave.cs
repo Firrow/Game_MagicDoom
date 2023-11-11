@@ -12,7 +12,7 @@ public class spellWave : MonoBehaviour
 
     void Start()
     {
-        damage = 10;
+        damage = 12;
         speed = 2.5f;
     }
 

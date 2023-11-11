@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     private float speed;
     private int health;
+    private int damage;
     private bool canMove;
     private Vector2 movement;
     private Quaternion actualRotationSens;
@@ -41,8 +42,6 @@ public class Player : MonoBehaviour
             MovePlayer();
 
         actualRotationSens = this.transform.rotation;
-
-        //Debug.Log(actualSpell);
     }
 
     private void Update()
@@ -59,13 +58,18 @@ public class Player : MonoBehaviour
                 ChangeContentInCauldron(touchedCauldron.type, false);
             }
         }
-        else if (actualSpell != null && Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell" KeyCode.Mouse0
+        else if (Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell" KeyCode.Mouse0
         {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (actualSpell != null)
+            {
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            // penser à lancer lorsque animation terminée !
-            UseSpell(actualSpell);
-            ActualSpell = null;
+                // penser à lancer lorsque animation terminée !
+                UseSpell(actualSpell);
+                ActualSpell = null;
+            }
+            else if (actualSpell == null && enemiesImCollidingWith.Count > 0) // Player can attack even if he don't have spell
+                PlayerAttack();
         }
     }
 
@@ -76,6 +80,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
             enemiesImCollidingWith.Add(collision.gameObject);
+            damage = collision.gameObject.GetComponent<Enemy>().Health / 6;
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Gems"))
         {
@@ -240,7 +245,20 @@ public class Player : MonoBehaviour
         
     }
 
+    private void PlayerAttack()
+    {
+        // ANIMATION COUP DE BATON AU SOL + CERCLE AUTOUR JOUEUR
+        foreach (var enemy in enemiesImCollidingWith)
+        {
+            enemy.gameObject.GetComponent<Enemy>().TakeDamage(damage);
 
+            if (enemy.GetComponent<Enemy>().Health <= 0)
+            {
+                enemiesImCollidingWith.Remove(enemy);
+                return;
+            }
+        }
+    }
 
 
 

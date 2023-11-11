@@ -14,7 +14,7 @@ public class spellBomb : MonoBehaviour
         animator = this.GetComponent<Animator>();
         appearTime = Time.time;
         explodeAnimation = false;
-        damage = 10;
+        damage = 12;
     }
 
     void Update()
