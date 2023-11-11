@@ -9,8 +9,8 @@ public class Enemy : MonoBehaviour
     private float speed;
     private int damage;
     private int health;
-    private bool isCollided;
     private int spawnRateGems;
+    private int collisionCount;
 
     [SerializeField] GameObject[] gems;
 
@@ -20,8 +20,8 @@ public class Enemy : MonoBehaviour
         speed = 0.5f;
         damage = 2;
         health = 10;
-        isCollided = false;
         spawnRateGems = 5;
+        collisionCount = 0;
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -41,9 +41,7 @@ public class Enemy : MonoBehaviour
         potentialTargetList.RemoveAll(item => item == null); // Removing destroy Cauldrons after coroutine
         ChoiceTarget();
 
-        //Debug.Log(isCollided);    BUG COLLISION QUAND CHANGEMENT SOUDAIN TARGET
-
-        if (!isCollided)
+        if (collisionCount == 0)
         {
             MoveEnemy();
         }
@@ -63,13 +61,13 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Enemies"))
         {
-            isCollided = true;
+            collisionCount++;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        isCollided = false;
+        collisionCount--;
     }
 
     private void MoveEnemy()

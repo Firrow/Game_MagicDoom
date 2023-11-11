@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
             MovePlayer();
 
         actualRotationSens = this.transform.rotation;
+
+        //Debug.Log(actualSpell);
     }
 
     private void Update()
