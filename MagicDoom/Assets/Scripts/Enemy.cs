@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
         potentialTargetList.RemoveAll(item => item == null); // Removing destroy Cauldrons after coroutine
         ChoiceTarget();
 
+        //Debug.Log(isCollided);    BUG COLLISION QUAND CHANGEMENT SOUDAIN TARGET
 
         if (!isCollided)
         {
