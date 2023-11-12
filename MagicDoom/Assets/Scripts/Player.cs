@@ -268,6 +268,8 @@ public class Player : MonoBehaviour
     private void PlayerAttack()
     {
         // ANIMATION COUP DE BATON AU SOL + CERCLE AUTOUR JOUEUR
+        Debug.Log("playerAttack");
+        animator.SetBool("attack", true);
         foreach (var enemy in enemiesImCollidingWith)
         {
             enemy.gameObject.GetComponent<Enemy>().TakeDamage(damage);
@@ -278,6 +280,13 @@ public class Player : MonoBehaviour
                 return;
             }
         }
+        
+    }
+
+    private void test()
+    {
+        Debug.Log("test");
+        animator.SetBool("attack", false);
     }
 
 
