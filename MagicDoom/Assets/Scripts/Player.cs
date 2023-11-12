@@ -191,7 +191,6 @@ public class Player : MonoBehaviour
 
     private void StopTakeDamageAnimation()
     {
-        Debug.Log("TakeDamage");
         Animator.SetBool("takeDamage", false);
     }
 
