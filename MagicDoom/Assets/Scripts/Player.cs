@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     private int health;
     private int damage;
     private bool canMove;
-    private bool castSpell;
     private Vector2 movement;
     private Quaternion actualRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
@@ -31,8 +30,7 @@ public class Player : MonoBehaviour
         actualSpell = null;
         canMove = true;
         Animator = this.GetComponent<Animator>();
-        //Animator.SetBool("isWalking", false);
-        castSpell = false;
+
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -178,6 +176,8 @@ public class Player : MonoBehaviour
 
     private void TakeDamage()
     {
+        Animator.SetBool("takeDamage", true);
+
         foreach (var enemy in enemiesImCollidingWith)
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
@@ -187,6 +187,12 @@ public class Player : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void StopTakeDamageAnimation()
+    {
+        Debug.Log("TakeDamage");
+        Animator.SetBool("takeDamage", false);
     }
 
     private void FindCauldron(string typeGem)
@@ -284,8 +290,6 @@ public class Player : MonoBehaviour
 
     private void PlayerAttack()
     {
-        // ANIMATION COUP DE BATON AU SOL + CERCLE AUTOUR JOUEUR
-        Debug.Log("playerAttack");
         Animator.SetBool("attack", true);
         foreach (var enemy in enemiesImCollidingWith)
         {
@@ -297,13 +301,13 @@ public class Player : MonoBehaviour
                 return;
             }
         }
-        
     }
 
     private void StopAttackAnimation()
     {
         Animator.SetBool("attack", false);
     }
+
 
 
 
