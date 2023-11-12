@@ -30,6 +30,8 @@ public class spellLaser : MonoBehaviour
 
     private void OnDestroy()
     {
+        player.Animator.speed = 1f;
+        player.Animator.SetBool("castSpell", false);
         player.CanMove = true;
     }
 }

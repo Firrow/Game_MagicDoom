@@ -2555,6 +2555,46 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7254952677792590015, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254952677792590015, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553842242545770865, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553842242545770865, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553842242545770865, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553842242545770865, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415384377171371631, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415384377171371631, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415384377171371631, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415384377171371631, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.11
+      objectReference: {fileID: 0}
     - target: {fileID: 8759931606627055506, guid: ab797eafd75a2ac478e5b8d98707191c, type: 3}
       propertyPath: m_Constraints
       value: 4

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private int health;
     private int damage;
     private bool canMove;
+    private bool castSpell;
     private Vector2 movement;
     private Quaternion actualRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
@@ -29,8 +30,9 @@ public class Player : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         actualSpell = null;
         canMove = true;
-        animator = this.GetComponent<Animator>();
-        animator.SetBool("isWalking", false);
+        Animator = this.GetComponent<Animator>();
+        //Animator.SetBool("isWalking", false);
+        castSpell = false;
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -68,9 +70,7 @@ public class Player : MonoBehaviour
             {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                // penser à lancer lorsque animation terminée !
-                UseSpell(actualSpell);
-                ActualSpell = null;
+                Animator.SetBool("castSpell", true);
             }
             else if (actualSpell == null && enemiesImCollidingWith.Count > 0) // Player can attack even if he don't have spell
                 PlayerAttack();
@@ -152,16 +152,16 @@ public class Player : MonoBehaviour
 
     private void DontMovePlayer()
     {
-        animator.SetBool("isWalking", false);
+        Animator.SetBool("isWalking", false);
         rb.velocity = Vector2.zero;
     }
 
     private void IsMoving(Vector3 playerActualPosition, Vector3 playerLastPosition)
     {
         if (playerActualPosition == playerLastPosition)
-            animator.SetBool("isWalking", false);
+            Animator.SetBool("isWalking", false);
         else
-            animator.SetBool("isWalking", true);
+            Animator.SetBool("isWalking", true);
     }
 
     public void PlayerOrientation(float moveHorizontal)
@@ -236,6 +236,23 @@ public class Player : MonoBehaviour
             return;
     }
 
+    private void CastSpell() // Called when animation is over
+    {
+        if (actualSpell.transform.tag == "laser")
+        {
+            animator.speed = 0f;
+            UseSpell(actualSpell);
+            ActualSpell = null;
+        }
+        else
+        {
+            UseSpell(actualSpell);
+            ActualSpell = null;
+            Animator.SetBool("castSpell", false);
+        }
+        
+    }
+
     private void UseSpell(GameObject spell)
     {
         GameObject spellPoint = this.transform.GetChild(0).gameObject;
@@ -269,7 +286,7 @@ public class Player : MonoBehaviour
     {
         // ANIMATION COUP DE BATON AU SOL + CERCLE AUTOUR JOUEUR
         Debug.Log("playerAttack");
-        animator.SetBool("attack", true);
+        Animator.SetBool("attack", true);
         foreach (var enemy in enemiesImCollidingWith)
         {
             enemy.gameObject.GetComponent<Enemy>().TakeDamage(damage);
@@ -283,10 +300,9 @@ public class Player : MonoBehaviour
         
     }
 
-    private void test()
+    private void StopAttackAnimation()
     {
-        Debug.Log("test");
-        animator.SetBool("attack", false);
+        Animator.SetBool("attack", false);
     }
 
 
@@ -313,6 +329,13 @@ public class Player : MonoBehaviour
     {
         get { return actualRotationSens; }
         set { actualRotationSens = value; }
+    }
+
+
+    public Animator Animator
+    {
+        get { return animator; }
+        set { animator = value; }
     }
 
 }
