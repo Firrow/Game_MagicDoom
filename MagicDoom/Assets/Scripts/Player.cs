@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     private GameObject actualSpell;
     private Cauldron touchedCauldron;
     private Vector2 mousePosition;
+    private Animator animator;
+
+    private Vector3 playerLastPosition;
+    private Vector3 playerActualPosition;
 
 
     void Start()
@@ -25,6 +29,8 @@ public class Player : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         actualSpell = null;
         canMove = true;
+        animator = this.GetComponent<Animator>();
+        animator.SetBool("isWalking", false);
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -35,9 +41,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         if (!CanMove)
-        {
             DontMovePlayer();
-        }
         else
             MovePlayer();
 
@@ -130,18 +134,46 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
+        playerActualPosition = this.transform.position;
+
+        // Play idle animation or walking animation
+        IsMoving(playerActualPosition, playerLastPosition);
+
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
 
-        movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
-        PlayerOrientation(moveHorizontal);
 
+        movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
+        playerLastPosition = this.transform.position;
+
+        PlayerOrientation(moveHorizontal);
         rb.velocity = movement;
     }
 
     private void DontMovePlayer()
     {
+        animator.SetBool("isWalking", false);
         rb.velocity = Vector2.zero;
+    }
+
+    private void IsMoving(Vector3 playerActualPosition, Vector3 playerLastPosition)
+    {
+        if (playerActualPosition == playerLastPosition)
+            animator.SetBool("isWalking", false);
+        else
+            animator.SetBool("isWalking", true);
+    }
+
+    public void PlayerOrientation(float moveHorizontal)
+    {
+        if (moveHorizontal > 0)
+        {
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (moveHorizontal < 0)
+            this.transform.rotation = Quaternion.Euler(0, -180, 0);
+        else
+            this.transform.rotation = actualRotationSens;
     }
 
     private void TakeDamage()
@@ -155,18 +187,6 @@ public class Player : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-    }
-
-    public void PlayerOrientation(float moveHorizontal)
-    {
-        if (moveHorizontal > 0)
-        {
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (moveHorizontal < 0)
-            this.transform.rotation = Quaternion.Euler(0, -180, 0);
-        else
-            this.transform.rotation = actualRotationSens;
     }
 
     private void FindCauldron(string typeGem)
