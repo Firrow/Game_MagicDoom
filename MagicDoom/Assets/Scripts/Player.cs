@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private int health;
     private int damage;
     private bool canMove;
+    private bool isDead;
     private Vector2 movement;
     private Quaternion actualRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
         actualSpell = null;
         canMove = true;
         Animator = this.GetComponent<Animator>();
+        isDead = false;
 
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
@@ -132,20 +134,23 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
-        playerActualPosition = this.transform.position;
+        if (!isDead)
+        {
+            playerActualPosition = this.transform.position;
 
-        // Play idle animation or walking animation
-        IsMoving(playerActualPosition, playerLastPosition);
+            // Play idle animation or walking animation
+            IsMoving(playerActualPosition, playerLastPosition);
 
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
+            float moveHorizontal = Input.GetAxisRaw("Horizontal");
+            float moveVertical = Input.GetAxisRaw("Vertical");
 
 
-        movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
-        playerLastPosition = this.transform.position;
+            movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
+            playerLastPosition = this.transform.position;
 
-        PlayerOrientation(moveHorizontal);
-        rb.velocity = movement;
+            PlayerOrientation(moveHorizontal);
+            rb.velocity = movement;
+        }
     }
 
     private void DontMovePlayer()
@@ -184,7 +189,10 @@ public class Player : MonoBehaviour
 
             if (Health <= 0)
             {
-                Destroy(this.gameObject);
+                isDead = true;
+                Debug.Log("mort");
+                this.GetComponent<PolygonCollider2D>().enabled = false;
+                Animator.SetBool("isDead", true);
             }
         }
     }
@@ -192,6 +200,12 @@ public class Player : MonoBehaviour
     private void StopTakeDamageAnimation()
     {
         Animator.SetBool("takeDamage", false);
+    }
+
+    private void DestroyPlayer() // Called when animation is over
+    {
+        
+        Destroy(this.gameObject);
     }
 
     private void FindCauldron(string typeGem)
