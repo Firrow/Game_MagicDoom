@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private int health;
     private int maxHealth = 20;
     private int damage;
+    private int score;
     private bool canMove;
     private bool isDead;
     private Vector2 movement;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         canMove = true;
         Animator = this.GetComponent<Animator>();
         isDead = false;
+        score = 0;
 
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
@@ -361,5 +363,12 @@ public class Player : MonoBehaviour
         get { return animator; }
         set { animator = value; }
     }
+
+    public int Score
+    {
+        get { return score; }
+        set { score = value; }
+    }
+
 
 }

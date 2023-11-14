@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private List<GameObject> potentialTargetList = new List<GameObject>();
     private GameObject targetEnemy;
+    private Player player;
     private float speed;
     private int damage;
     private int health;
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour
         spawnRateGems = 5;
         collisionCount = 0;
         animator = this.GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -118,6 +120,7 @@ public class Enemy : MonoBehaviour
                 spawnGem();
 
             Destroy(this.gameObject);
+            player.Score++;
         }
     }
 
