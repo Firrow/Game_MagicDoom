@@ -297,7 +297,7 @@ public class Player : MonoBehaviour
                 if (Health < maxHealth)
                 {
                     Health += 10;
-                    healthBar.SetHealth(Health); //comment faire si PV du joueur au max ?
+                    healthBar.SetHealth(Health);
                 }
                 break;
             case "wall":
@@ -306,7 +306,6 @@ public class Player : MonoBehaviour
             default:
                 break;
         }
-        
     }
 
     private void PlayerAttack()
