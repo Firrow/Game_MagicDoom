@@ -23,13 +23,13 @@ public class spellWave : MonoBehaviour
     {
         movement = new Vector3(sensShoot.x, 0, 0);
 
-        gameObject.transform.Translate(movement * speed * 3 * Time.deltaTime);
-        gameObject.transform.localScale += new Vector3(0.003f, 0.003f, 0);
+        gameObject.transform.Translate(movement * speed * 2 * Time.deltaTime);
+        gameObject.transform.localScale += new Vector3(0.004f, 0.004f, 0);
 
         RecalculateColliderShape();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {

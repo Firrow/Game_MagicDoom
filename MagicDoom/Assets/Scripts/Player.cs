@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public HealthBar healthBar;
+
     private float speed;
     private int health;
+    private int maxHealth = 20;
     private int damage;
     private bool canMove;
     private bool isDead;
@@ -25,7 +28,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Health = 20;
+        Health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
         speed = 2;
         rb = this.GetComponent<Rigidbody2D>();
         actualSpell = null;
@@ -186,6 +191,7 @@ public class Player : MonoBehaviour
         foreach (var enemy in enemiesImCollidingWith)
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
+            healthBar.SetHealth(Health);
 
             if (Health <= 0)
             {
@@ -288,9 +294,11 @@ public class Player : MonoBehaviour
                 Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             case "life":
-                Health += 10;
-                // FEEDBACK À AJOUTER
-                // BARRE DE VIE À AUGMENTER
+                if (Health < maxHealth)
+                {
+                    Health += 10;
+                    healthBar.SetHealth(Health); //comment faire si PV du joueur au max ?
+                }
                 break;
             case "wall":
                 Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
