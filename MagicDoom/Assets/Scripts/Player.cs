@@ -190,9 +190,9 @@ public class Player : MonoBehaviour
             if (Health <= 0)
             {
                 isDead = true;
-                Debug.Log("mort");
                 this.GetComponent<PolygonCollider2D>().enabled = false;
-                Animator.SetBool("isDead", true);
+                Animator.SetTrigger("isDead");
+                Animator.SetBool("takeDamage", false);
             }
         }
     }
@@ -204,8 +204,8 @@ public class Player : MonoBehaviour
 
     private void DestroyPlayer() // Called when animation is over
     {
-        
         Destroy(this.gameObject);
+        // Lancer fin du jeu
     }
 
     private void FindCauldron(string typeGem)
