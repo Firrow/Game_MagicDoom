@@ -110,6 +110,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        animator.SetTrigger("takeDamage");
         health -= damage;
 
         if (Health <= 0)
@@ -123,6 +124,7 @@ public class Enemy : MonoBehaviour
             player.Score++;
         }
     }
+    
 
     private void spawnGem()
     {
