@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private int score;
     private bool canMove;
     private bool isDead;
+    private bool gameOver;
     private Vector2 movement;
     private Quaternion actualRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         Animator = this.GetComponent<Animator>();
         isDead = false;
         score = 0;
+        gameOver = false;
 
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
@@ -213,7 +215,7 @@ public class Player : MonoBehaviour
     private void DestroyPlayer() // Called when animation is over
     {
         Destroy(this.gameObject);
-        // Lancer fin du jeu
+        GameOver = true;
     }
 
     private void FindCauldron(string typeGem)
@@ -370,5 +372,10 @@ public class Player : MonoBehaviour
         set { score = value; }
     }
 
+    public bool GameOver
+    {
+        get { return gameOver; }
+        set { gameOver = value; }
+    }
 
 }
