@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ManonGame.unity
     guid: 193fe3ae900437240a681f3585766179
   - enabled: 1
-    path: Assets/Scenes/End.unity
+    path: Assets/Scenes/EndGameOver.unity
     guid: c224995482ebff7439f2af9eca1109a7
+  - enabled: 1
+    path: Assets/Scenes/EndVictory.unity
+    guid: e680b3cdd348c6445925a43fda0a227a
   m_configObjects: {}

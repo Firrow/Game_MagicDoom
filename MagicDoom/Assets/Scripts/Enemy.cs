@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private int spawnRateGems;
     private int collisionCount;
     private Animator animator;
+    private GameManager gameManager;
 
     [SerializeField] GameObject[] gems;
 
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
         collisionCount = 0;
         animator = this.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -125,6 +127,13 @@ public class Enemy : MonoBehaviour
         }
     }
     
+    private void checkEndGame()
+    {
+        if (player.Score >= gameManager.NumberEnemy)
+        {
+            player.Victory = true;
+        }
+    }
 
     private void spawnGem()
     {
