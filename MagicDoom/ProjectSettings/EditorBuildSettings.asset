@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: bebf988f8e0fef44285aab21b7c088ea
+  - enabled: 1
+    path: Assets/Scenes/Difficulty.unity
+    guid: 893557b912eac7e48a18225da7628eeb
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: d6bf064c2a4d8584e81d5efb9fae1933
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 4fbcf4865de6431489dc83a873f6e090
+  - enabled: 1
     path: Assets/Scenes/ManonGame.unity
     guid: 193fe3ae900437240a681f3585766179
   - enabled: 1

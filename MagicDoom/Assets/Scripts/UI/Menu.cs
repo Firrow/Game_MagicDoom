@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class Menu : MonoBehaviour
 {
-    private Button button;
+    /*private Button button;
 
     void Start()
     {
@@ -23,5 +25,25 @@ public class Menu : MonoBehaviour
     private void OnDisable()
     {
         button.onClick.RemoveListener(ButtonSelected);
+    }*/
+
+    public void LoadScreenDifficulty()
+    {
+        SceneManager.LoadScene("Difficulty");
+    }
+
+    public void LoadScreenSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
+    public void LoadScreenCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
