@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,19 +32,17 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-
-        Debug.Log("Nombre d'ennemi sélectionné : " + NumberEnemy);
     }
 
     void Update()
     {
         if (player.GameOver)
         {
-            Application.LoadLevel("EndGameOver");
+            SceneManager.LoadScene("EndGameOver");
         }
         if (player.Victory)
         {
-            Application.LoadLevel("EndVictory");
+            SceneManager.LoadScene("EndVictory");
         }
     }
 

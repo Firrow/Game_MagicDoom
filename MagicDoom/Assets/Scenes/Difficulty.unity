@@ -390,13 +390,13 @@ MonoBehaviour:
       - m_Target: {fileID: 329281815}
         m_TargetAssemblyTypeName: DifficultyMenu, Assembly-CSharp
         m_MethodName: LoadEasyGame
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: easy
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &498460016
@@ -545,13 +545,13 @@ MonoBehaviour:
       - m_Target: {fileID: 329281815}
         m_TargetAssemblyTypeName: DifficultyMenu, Assembly-CSharp
         m_MethodName: LoadGreatWizardGame
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: greatWizard
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &545692447
@@ -1036,13 +1036,13 @@ MonoBehaviour:
       - m_Target: {fileID: 329281815}
         m_TargetAssemblyTypeName: DifficultyMenu, Assembly-CSharp
         m_MethodName: LoadNormalGame
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: normal
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1264553148
@@ -1459,13 +1459,13 @@ MonoBehaviour:
       - m_Target: {fileID: 329281815}
         m_TargetAssemblyTypeName: DifficultyMenu, Assembly-CSharp
         m_MethodName: LoadHardGame
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: hard
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1539088544
