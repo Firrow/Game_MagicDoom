@@ -14,7 +14,7 @@ public class spellWave : MonoBehaviour
     void Start()
     {
         damage = 100;
-        speed = 2.5f;
+        speed = 3f;
 
         animator = this.GetComponent<Animator>();
     }
@@ -24,7 +24,7 @@ public class spellWave : MonoBehaviour
         movement = new Vector3(sensShoot.x, 0, 0);
 
         gameObject.transform.Translate(movement * speed * 2 * Time.deltaTime);
-        gameObject.transform.localScale += new Vector3(0.004f, 0.004f, 0);
+        gameObject.transform.localScale += new Vector3(0.0035f, 0.0035f, 0);
 
         RecalculateColliderShape();
     }
