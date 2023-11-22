@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static string difficulty;
+
     private Player player;
     private int numberEnemy;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        NumberEnemy = 25;
 
         //récupérer difficulté choisie dans menu des difficultés
-        /*switch (difficulty)
+        switch (difficulty)
         {
             case "easy":
                 NumberEnemy = 25;
@@ -24,12 +25,14 @@ public class GameManager : MonoBehaviour
             case "hard":
                 NumberEnemy = 75;
                 break;
-            case "great wizard":
+            case "greatWizard":
                 NumberEnemy = 100;
                 break;
             default:
                 break;
-        }*/
+        }
+
+        Debug.Log("Nombre d'ennemi sélectionné : " + NumberEnemy);
     }
 
     void Update()
