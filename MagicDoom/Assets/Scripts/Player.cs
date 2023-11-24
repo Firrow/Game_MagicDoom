@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private Cauldron touchedCauldron;
     private Vector2 mousePosition;
     private Animator animator;
+    private GameManager gameManager;
 
     private Vector3 playerLastPosition;
     private Vector3 playerActualPosition;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
         score = 0;
         GameOver = false;
         Victory = false;
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
@@ -334,7 +336,13 @@ public class Player : MonoBehaviour
         Animator.SetBool("attack", false);
     }
 
-
+    public void checkEndGame()
+    {
+        if (Score >= gameManager.NumberEnemy)
+        {
+            Victory = true;
+        }
+    }
 
 
     public int Health

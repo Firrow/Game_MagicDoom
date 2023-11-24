@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         collisionCount = 0;
         animator = this.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
         {
@@ -124,14 +124,7 @@ public class Enemy : MonoBehaviour
 
             Destroy(this.gameObject);
             player.Score++;
-        }
-    }
-    
-    private void checkEndGame()
-    {
-        if (player.Score >= gameManager.NumberEnemy)
-        {
-            player.Victory = true;
+            player.checkEndGame();
         }
     }
 
