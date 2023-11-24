@@ -258,11 +258,13 @@ public class Player : MonoBehaviour
             {
                 empty.SetActive(false);
                 liquide.SetActive(true);
+                cauldrons[typePotion].GetComponent<Cauldron>().IsFill = true;
             }
             else
             {
                 empty.SetActive(true);
                 liquide.SetActive(false);
+                cauldrons[typePotion].GetComponent<Cauldron>().IsFill = false;
             }
         }
         else

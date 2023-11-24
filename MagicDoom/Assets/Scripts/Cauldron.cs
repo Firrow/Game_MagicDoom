@@ -9,9 +9,11 @@ public class Cauldron : MonoBehaviour
 
     private int health;
     private int defaultHealth;
+    private bool isFill;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private SpriteRenderer spriteRenderer;
+
 
     [SerializeField] Sprite[] cauldronSprites;
 
@@ -20,10 +22,22 @@ public class Cauldron : MonoBehaviour
     {
         defaultHealth = 100;
         Health = defaultHealth;
+        IsFill = false;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (IsFill)
+        {
+            this.transform.GetChild(2).gameObject.SetActive(true);
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        this.transform.GetChild(2).gameObject.SetActive(false);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -83,4 +97,11 @@ public class Cauldron : MonoBehaviour
         get { return health; }
         set { health = value; }
     }
+
+    public bool IsFill
+    {
+        get { return isFill; }
+        set { isFill = value; }
+    }
+
 }
