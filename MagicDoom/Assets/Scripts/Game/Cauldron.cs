@@ -6,6 +6,8 @@ public class Cauldron : MonoBehaviour
 {
     public string type;
     public GameObject spell;
+    [SerializeField] Sprite[] cauldronSprites;
+    [SerializeField] AudioClip[] sounds;
 
     private int health;
     private int defaultHealth;
@@ -13,9 +15,9 @@ public class Cauldron : MonoBehaviour
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
+    private List<bool> stepsDamage = new List<bool>();
 
-
-    [SerializeField] Sprite[] cauldronSprites;
 
 
     void Start()
@@ -24,11 +26,25 @@ public class Cauldron : MonoBehaviour
         Health = defaultHealth;
         IsFill = false;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        audioSource = this.GetComponent<AudioSource>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            stepsDamage.Add(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (IsFill && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            this.transform.GetChild(2).gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (IsFill)
+        if (IsFill && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             this.transform.GetChild(2).gameObject.SetActive(true);
         }
@@ -74,22 +90,45 @@ public class Cauldron : MonoBehaviour
         foreach (var enemy in enemiesImCollidingWith)
         {
             Health -= enemy.GetComponent<Enemy>().Damage;
-
         }
 
         if (Health > defaultHealth * 0.75)
             spriteRenderer.sprite = cauldronSprites[0];
+            
         else if (Health > defaultHealth * 0.5)
+        {
             spriteRenderer.sprite = cauldronSprites[1];
+            isAlreadyPlayed(stepsDamage[0], sounds[0]);
+            stepsDamage[0] = true;
+        }
         else if (Health > defaultHealth * 0.25)
+        {
             spriteRenderer.sprite = cauldronSprites[2];
+            isAlreadyPlayed(stepsDamage[1], sounds[1]);
+            stepsDamage[1] = true;
+        }
         else if (Health > 0)
+        {
             spriteRenderer.sprite = cauldronSprites[3];
+            isAlreadyPlayed(stepsDamage[2], sounds[2]);
+            stepsDamage[2] = true;
+        }
         else
         {
-            Destroy(this.gameObject);
+            isAlreadyPlayed(stepsDamage[3], sounds[3]);
+            Invoke("Destroy", sounds[3].length);
         }
+    }
 
+    private void isAlreadyPlayed(bool step, AudioClip sound)
+    {
+        if (!step)
+            audioSource.PlayOneShot(sound);
+    }
+
+    private void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 
     public int Health
