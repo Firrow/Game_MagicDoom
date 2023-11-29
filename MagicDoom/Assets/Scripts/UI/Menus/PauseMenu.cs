@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject gameUI;
+    public GameObject settingsMenuUI;
 
     private bool isPause;
     private Player player;
@@ -26,7 +28,6 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                Debug.Log("pause");
                 Paused();
             }
         }
@@ -44,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         player.CanMove = true;
         pauseMenuUI.SetActive(false);
+        gameUI.SetActive(true);
         Time.timeScale = 1;
         isPause = false;
     }
@@ -51,7 +53,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadSettings()
     {
         player.CanMove = false;
-        SceneManager.LoadScene("Settings");
+        settingsMenuUI.SetActive(true);
+        gameUI.SetActive(false);
         Time.timeScale = 0;
         isPause = true;
     }

@@ -13,6 +13,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer musicAudioMixer;
     public AudioMixer soundAudioMixer;
 
+
     private void Start()
     {
         AllResolutionSettings();
@@ -36,6 +37,13 @@ public class SettingsMenu : MonoBehaviour
     public void ReturnMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void ReturnGame()
+    {
+        GameObject pauseUI = GameObject.FindGameObjectWithTag("PauseMenu");
+        this.gameObject.SetActive(false);
+        pauseUI.SetActive(true);
     }
 
     private void AllResolutionSettings()
