@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class spellWall : MonoBehaviour
 {
+    [SerializeField] AudioClip sound;
+    [SerializeField] Sprite[] wallSprites;
+
     private float lastDamageTime;
     private int health;
     private int defaultHealth;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
-
-    [SerializeField] Sprite[] wallSprites;
+    private AudioSource audioSource;
 
 
     void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound);
         defaultHealth = 50;
         Health = defaultHealth;
         spriteRenderer = this.GetComponent<SpriteRenderer>();

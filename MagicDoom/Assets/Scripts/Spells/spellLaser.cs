@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class spellLaser : MonoBehaviour
 {
+    [SerializeField] AudioClip sound;
+
     private int damage;
     private Player player;
     private AudioSource audioSource;
-    [SerializeField] AudioClip sound;
+
 
     void Start()
     {

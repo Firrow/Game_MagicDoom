@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] AudioClip soundLife;
+
     public HealthBar healthBar;
 
     private float speed;
@@ -18,13 +20,14 @@ public class Player : MonoBehaviour
     private Quaternion actualRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
-    private Rigidbody2D rb;
     private Dictionary<string, GameObject> cauldrons = new Dictionary<string, GameObject>();
     private GameObject actualSpell;
     private Cauldron touchedCauldron;
     private Vector2 mousePosition;
     private Animator animator;
     private GameManager gameManager;
+    private Rigidbody2D rb;
+    private AudioSource audioSource;
 
     private Vector3 playerLastPosition;
     private Vector3 playerActualPosition;
@@ -36,7 +39,6 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
         speed = 2;
-        rb = this.GetComponent<Rigidbody2D>();
         actualSpell = null;
         canMove = true;
         Animator = this.GetComponent<Animator>();
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
         GameOver = false;
         Victory = false;
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        rb = this.GetComponent<Rigidbody2D>();
+        audioSource = this.GetComponent<AudioSource>();
 
 
         foreach (var cauldron in GameObject.FindGameObjectsWithTag("Cauldron"))
@@ -306,6 +310,7 @@ public class Player : MonoBehaviour
             case "life":
                 if (Health < maxHealth)
                 {
+                    audioSource.PlayOneShot(soundLife); //dont work
                     Health += 10;
                     healthBar.SetHealth(Health);
                 }
