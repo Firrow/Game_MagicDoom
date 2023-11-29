@@ -6,9 +6,13 @@ public class spellLaser : MonoBehaviour
 {
     private int damage;
     private Player player;
+    private AudioSource audioSource;
+    [SerializeField] AudioClip sound;
 
     void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound);
         damage = 100;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.CanMove = false;
