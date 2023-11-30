@@ -26,11 +26,10 @@ public class Player : MonoBehaviour
     private Vector2 mousePosition;
     private Animator animator;
     private GameManager gameManager;
-    private Rigidbody2D rb;
-    private AudioSource audioSource;
-
     private Vector3 playerLastPosition;
     private Vector3 playerActualPosition;
+    private Rigidbody2D rb;
+    private AudioSource audioSource;
 
 
     void Start()
@@ -308,9 +307,10 @@ public class Player : MonoBehaviour
                 Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             case "life":
-                if (Health < maxHealth)
+                if (Health <= maxHealth)
+                    audioSource.PlayOneShot(soundLife);
+                else if (Health < maxHealth)
                 {
-                    audioSource.PlayOneShot(soundLife); //dont work
                     Health += 10;
                     healthBar.SetHealth(Health);
                 }
