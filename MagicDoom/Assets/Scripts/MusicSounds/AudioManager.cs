@@ -50,6 +50,8 @@ public class AudioManager : MonoBehaviour
             else
                 changeMusic();
         }
+
+
     }
 
     private void GetLastSceneName(Scene current, Scene next)
