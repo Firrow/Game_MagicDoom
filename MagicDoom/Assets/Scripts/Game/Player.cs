@@ -307,9 +307,8 @@ public class Player : MonoBehaviour
                 Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             case "life":
-                if (Health <= maxHealth)
-                    audioSource.PlayOneShot(soundLife);
-                else if (Health < maxHealth)
+                audioSource.PlayOneShot(soundLife); //dont work (instantiate empty life with an audioSource ?)
+                if (Health < maxHealth)
                 {
                     Health += 10;
                     healthBar.SetHealth(Health);

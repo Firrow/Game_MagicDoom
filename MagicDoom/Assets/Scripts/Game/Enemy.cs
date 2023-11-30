@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] GameObject[] gems;
+
     private List<GameObject> potentialTargetList = new List<GameObject>();
     private GameObject targetEnemy;
     private Player player;
@@ -14,8 +16,6 @@ public class Enemy : MonoBehaviour
     private int collisionCount;
     private Animator animator;
     private GameManager gameManager;
-
-    [SerializeField] GameObject[] gems;
 
 
     void Start()
