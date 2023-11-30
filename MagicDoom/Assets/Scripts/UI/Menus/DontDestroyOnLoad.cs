@@ -6,30 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
-    public GameObject[] gameObjects;
+    public AudioSource audioSource;
     public static DontDestroyOnLoad instance;
 
 
-    private void Awake()
+    private void Start()
     {
-        if (instance != null)
-        {
-            return;
-        }
+        if (instance == null)
+            instance = new DontDestroyOnLoad();
 
-        instance = this;
-
-        foreach (var gameObject in gameObjects)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
-    private void RemoveFromDontDestroyOnLoad()
-    {
-        foreach (var gameObject in gameObjects)
-        {
-            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
-        }
+        DontDestroyOnLoad(audioSource);
     }
 }

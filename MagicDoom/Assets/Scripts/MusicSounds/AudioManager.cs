@@ -6,75 +6,74 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip[] playlistMusics;
-    public AudioSource audioSource;
+    public List<AudioClip> playlistMusics = new List<AudioClip>();
 
-    private List<string> sceneWithSameMusic = new List<string>();
+    Dictionary<string, string> sceneNameToMusicName = new Dictionary<string, string>();
     private string lastSceneName;
-    private string currentScene;
+
+    private static AudioManager instance = null;
+    private AudioSource myAudio;
 
     private void Awake()
     {
-        lastSceneName = "";
+        sceneNameToMusicName.Add("Menu", "menu");
+        sceneNameToMusicName.Add("Difficulty", "menu");
+        sceneNameToMusicName.Add("Settings", "menu");
+        sceneNameToMusicName.Add("Credits", "menu");
+        sceneNameToMusicName.Add("ManonGame", "game");
+        sceneNameToMusicName.Add("EndVictory", "victory");
+        sceneNameToMusicName.Add("EndGameOver", "gameOver");
 
-        sceneWithSameMusic.Add("Menu");
-        sceneWithSameMusic.Add("Difficulty");
-        sceneWithSameMusic.Add("Settings");
-        sceneWithSameMusic.Add("Credits");
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            return;
+        }
+        if (instance == this) return;
+            Destroy(gameObject);
     }
 
     void OnEnable()
     {
-        SceneManager.activeSceneChanged += GetLastSceneName;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        currentScene = SceneManager.GetActiveScene().name;
 
-        if (sceneWithSameMusic.Contains(lastSceneName))
+        if(myAudio == null)
         {
-            if (sceneWithSameMusic.Contains(currentScene))
-                return; // Allow to continu the current music (same for all first menus)
-            else
-                changeMusic();
+            myAudio = this.GetComponent<AudioSource>();
+            myAudio.clip = playlistMusics[0];
+            myAudio.Play();
         }
-        else
+
+        if (lastSceneName == null)
+            lastSceneName = scene.name;
+
+        Debug.Log("latest scene " + lastSceneName + "current scene " + scene.name);
+
+        if (sceneNameToMusicName[lastSceneName] != sceneNameToMusicName[scene.name])
         {
-            if (sceneWithSameMusic.Contains(currentScene))
+            myAudio.clip = SearchMusicByName(sceneNameToMusicName[scene.name]);
+            myAudio.Play();
+        }
+
+        lastSceneName = scene.name;
+    }
+
+    private AudioClip SearchMusicByName(string name)
+    {
+        foreach (var music in playlistMusics)
+        {
+            Debug.Log("music searched : " + music.name);
+            if (music.name == name)
             {
-                audioSource.clip = playlistMusics[0];
-                audioSource.Play();
+
+                return music;
             }
-            else
-                changeMusic();
         }
-
-
-    }
-
-    private void GetLastSceneName(Scene current, Scene next)
-    {
-        lastSceneName = currentScene;
-    }
-
-    private void changeMusic()
-    {
-        if (currentScene == "ManonGame")
-        {
-            audioSource.clip = playlistMusics[1];
-            audioSource.Play();
-        }
-        else if (currentScene == "EndVictory")
-        {
-            audioSource.clip = playlistMusics[2];
-            audioSource.Play();
-        }
-        else if (currentScene == "EndGameOver")
-        {
-            audioSource.clip = playlistMusics[3];
-            audioSource.Play();
-        }
+        throw new System.Exception("Music " + name + "not found");
     }
 }
