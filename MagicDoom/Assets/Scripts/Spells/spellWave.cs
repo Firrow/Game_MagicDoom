@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class spellWave : MonoBehaviour
 {
+    [SerializeField] AudioClip sound;
+
     private float speed;
     private Vector3 movement;
     private Vector3 sensShoot = new Vector3(1, 0, 0);
     private int damage;
     private Animator animator;
+    private AudioSource audioSource;
 
 
     void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound);
         damage = 100;
         speed = 3f;
 
