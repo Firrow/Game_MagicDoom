@@ -52,8 +52,6 @@ public class AudioManager : MonoBehaviour
         if (lastSceneName == null)
             lastSceneName = scene.name;
 
-        Debug.Log("latest scene " + lastSceneName + "current scene " + scene.name);
-
         if (sceneNameToMusicName[lastSceneName] != sceneNameToMusicName[scene.name])
         {
             myAudio.clip = SearchMusicByName(sceneNameToMusicName[scene.name]);
@@ -67,7 +65,6 @@ public class AudioManager : MonoBehaviour
     {
         foreach (var music in playlistMusics)
         {
-            Debug.Log("music searched : " + music.name);
             if (music.name == name)
             {
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject[] gems;
+    [SerializeField] AudioClip[] soundsScream;
 
     private List<GameObject> potentialTargetList = new List<GameObject>();
     private GameObject targetEnemy;
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
     private int spawnRateGems;
     private int collisionCount;
     private Animator animator;
-    private GameManager gameManager;
+    private AudioSource audioSource;
 
 
     void Start()
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
         collisionCount = 0;
         animator = this.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        audioSource = this.GetComponent<AudioSource>();
 
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Cauldron"))
@@ -112,6 +114,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        audioSource.PlayOneShot(soundsScream[Random.Range(0, 3)]);
         animator.SetTrigger("takeDamage");
         health -= damage;
 
