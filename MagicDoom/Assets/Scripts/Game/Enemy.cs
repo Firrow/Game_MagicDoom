@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        audioSource.PlayOneShot(soundsScream[Random.Range(0, 3)]);
+        audioSource.PlayOneShot(soundsScream[Random.Range(0, 4)]);
         animator.SetTrigger("takeDamage");
         health -= damage;
 

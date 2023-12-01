@@ -394,6 +394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc53a97e6f44de142bb5685e8f10b0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundsScream:
+  - {fileID: 8300000, guid: 8af50f270ce99204bbddc6a6814fa7b9, type: 3}
+  - {fileID: 8300000, guid: 14aa5673de2437745bd19ccd2358ef33, type: 3}
   soundLife: {fileID: 8300000, guid: e436e2070a31a404eb36b4193159ce09, type: 3}
   healthBar: {fileID: 0}
 --- !u!1 &4207454354973058029

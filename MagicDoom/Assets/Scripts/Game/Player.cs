@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] AudioClip[] soundsScream;
     [SerializeField] AudioClip soundLife;
 
     public HealthBar healthBar;
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour
 
     private void TakeDamage()
     {
+        audioSource.PlayOneShot(soundsScream[Random.Range(0, 2)]);
         Animator.SetBool("takeDamage", true);
 
         foreach (var enemy in enemiesImCollidingWith)
