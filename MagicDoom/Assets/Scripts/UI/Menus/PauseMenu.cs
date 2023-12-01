@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] AudioClip soundClick;
     public GameObject pauseMenuUI;
     public GameObject gameUI;
     public GameObject settingsMenuUI;
 
     private bool isPause;
     private Player player;
+    private AudioSource audioSource;
 
     private void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         isPause = false;
     }
@@ -53,8 +56,9 @@ public class PauseMenu : MonoBehaviour
     public void LoadSettings()
     {
         player.CanMove = false;
-        settingsMenuUI.SetActive(true);
-        gameUI.SetActive(false);
+        StartCoroutine(DelaySceneLoad(settingsMenuUI));
+        /*settingsMenuUI.SetActive(true);
+        gameUI.SetActive(false);*/
         Time.timeScale = 0;
         isPause = true;
     }
@@ -62,10 +66,27 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Resume(); // Allow to disabled timeScale
-        SceneManager.LoadScene("Menu");
+        //SceneManager.LoadScene("Menu");
+        audioSource.PlayOneShot(soundClick);
+        StartCoroutine(DelaySceneLoad("Menu"));
     }
 
 
+    IEnumerator DelaySceneLoad(GameObject scene)
+    {
+        audioSource.PlayOneShot(soundClick);
+        yield return new WaitWhile(() => audioSource.isPlaying);
+
+        gameObject.SetActive(false);
+        if (scene != null)
+            scene.SetActive(true);
+    }
+
+    IEnumerator DelaySceneLoad(string sceneName)
+    {
+        yield return new WaitForSeconds(soundClick.length - 0.2f);
+        SceneManager.LoadScene(sceneName);
+    }
 
     public bool IsPause
     {

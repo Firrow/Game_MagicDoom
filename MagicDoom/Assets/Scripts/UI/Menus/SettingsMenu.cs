@@ -8,15 +8,21 @@ using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [SerializeField] AudioClip soundClick;
+
     public Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
     public AudioMixer musicAudioMixer;
     public AudioMixer soundAudioMixer;
 
+    private AudioSource audioSource;
+
+
 
     private void Start()
     {
         AllResolutionSettings();
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     public void SetVolumeMusic(float volume)
@@ -36,14 +42,14 @@ public class SettingsMenu : MonoBehaviour
 
     public void ReturnMenu()
     {
-        SceneManager.LoadScene("Menu");
+        audioSource.PlayOneShot(soundClick);
+        StartCoroutine(DelaySceneLoad("Menu"));
     }
 
     public void ReturnGame()
     {
         GameObject pauseUI = GameObject.FindGameObjectWithTag("PauseMenu");
-        this.gameObject.SetActive(false);
-        pauseUI.SetActive(true);
+        StartCoroutine(DelayPauseLoad(pauseUI));
     }
 
     private void AllResolutionSettings()
@@ -76,5 +82,21 @@ public class SettingsMenu : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    IEnumerator DelayPauseLoad(GameObject pauseUI)
+    {
+        audioSource.PlayOneShot(soundClick);
+        yield return new WaitWhile(() => audioSource.isPlaying);
+
+        gameObject.SetActive(false);
+        if (pauseUI != null)
+            pauseUI.SetActive(true);
+    }
+
+    IEnumerator DelaySceneLoad(string sceneName)
+    {
+        yield return new WaitForSeconds(soundClick.length - 0.2f);
+        SceneManager.LoadScene(sceneName);
     }
 }

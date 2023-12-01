@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] AudioClip[] soundsScream;
+    [SerializeField] AudioClip[] soundsSteps;
     [SerializeField] AudioClip soundLife;
 
     public HealthBar healthBar;
@@ -149,6 +150,7 @@ public class Player : MonoBehaviour
     }
 
 
+
     private void MovePlayer()
     {
         if (!isDead)
@@ -196,9 +198,16 @@ public class Player : MonoBehaviour
             this.transform.rotation = actualRotationSens;
     }
 
+    public void soundSteps() // Called during animation
+    {
+        audioSource.PlayOneShot(soundsSteps[Random.Range(0, 4)]);
+    }
+
+
+
     private void TakeDamage()
     {
-        audioSource.PlayOneShot(soundsScream[Random.Range(0, 2)]);
+        audioSource.PlayOneShot(soundsScream[Random.Range(0, 4)]);
         Animator.SetBool("takeDamage", true);
 
         foreach (var enemy in enemiesImCollidingWith)
@@ -216,7 +225,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void StopTakeDamageAnimation()
+    private void StopTakeDamageAnimation() // Called when animation is over
     {
         Animator.SetBool("takeDamage", false);
     }
@@ -226,6 +235,8 @@ public class Player : MonoBehaviour
         Destroy(this.gameObject);
         GameOver = true;
     }
+
+
 
     private void FindCauldron(string typeGem)
     {
@@ -276,7 +287,7 @@ public class Player : MonoBehaviour
             return;
     }
 
-    private void CastSpell() // Called when animation is over
+    private void CastSpell() // Called during animation
     {
         if (actualSpell.transform.tag == "laser")
         {
@@ -344,6 +355,8 @@ public class Player : MonoBehaviour
         Animator.SetBool("attack", false);
     }
 
+
+
     public void checkEndGame()
     {
         if (Score >= gameManager.NumberEnemy)
@@ -351,6 +364,7 @@ public class Player : MonoBehaviour
             Victory = true;
         }
     }
+
 
 
     public int Health
@@ -376,7 +390,6 @@ public class Player : MonoBehaviour
         get { return actualRotationSens; }
         set { actualRotationSens = value; }
     }
-
 
     public Animator Animator
     {
