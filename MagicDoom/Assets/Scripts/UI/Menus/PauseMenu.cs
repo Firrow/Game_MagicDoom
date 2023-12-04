@@ -57,8 +57,6 @@ public class PauseMenu : MonoBehaviour
     {
         player.CanMove = false;
         StartCoroutine(DelaySceneLoad(settingsMenuUI));
-        /*settingsMenuUI.SetActive(true);
-        gameUI.SetActive(false);*/
         Time.timeScale = 0;
         isPause = true;
     }
@@ -66,7 +64,6 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Resume(); // Allow to disabled timeScale
-        //SceneManager.LoadScene("Menu");
         audioSource.PlayOneShot(soundClick);
         StartCoroutine(DelaySceneLoad("Menu"));
     }
@@ -77,7 +74,6 @@ public class PauseMenu : MonoBehaviour
         audioSource.PlayOneShot(soundClick);
         yield return new WaitWhile(() => audioSource.isPlaying);
 
-        gameObject.SetActive(false);
         if (scene != null)
             scene.SetActive(true);
     }

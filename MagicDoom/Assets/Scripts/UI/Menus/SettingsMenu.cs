@@ -50,6 +50,10 @@ public class SettingsMenu : MonoBehaviour
     {
         GameObject pauseUI = GameObject.FindGameObjectWithTag("PauseMenu");
         StartCoroutine(DelayPauseLoad(pauseUI));
+
+        gameObject.SetActive(false);
+        if (pauseUI != null)
+            pauseUI.SetActive(true);
     }
 
     private void AllResolutionSettings()
@@ -88,10 +92,6 @@ public class SettingsMenu : MonoBehaviour
     {
         audioSource.PlayOneShot(soundClick);
         yield return new WaitWhile(() => audioSource.isPlaying);
-
-        gameObject.SetActive(false);
-        if (pauseUI != null)
-            pauseUI.SetActive(true);
     }
 
     IEnumerator DelaySceneLoad(string sceneName)
