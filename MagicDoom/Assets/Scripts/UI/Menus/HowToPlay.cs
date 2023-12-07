@@ -3,47 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class Menu : MonoBehaviour
+public class HowToPlay : MonoBehaviour
 {
     [SerializeField] AudioClip soundClick;
     private AudioSource audioSource;
 
+    public GameObject rules;
+    public GameObject controls;
 
     private void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
     }
 
-    public void LoadScreenDifficulty()
+    public void LoadRules()
     {
         audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelaySceneLoad("Difficulty"));
+        rules.SetActive(true);
+        controls.SetActive(false);
     }
 
-    public void LoadHowToPlay()
+    public void LoadControls()
     {
         audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelaySceneLoad("HowToPlay"));
+        controls.SetActive(true);
+        rules.SetActive(false);
     }
 
-    public void LoadScreenSettings()
+    public void LoadMenu()
     {
         audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelaySceneLoad("Settings"));
+        StartCoroutine(DelaySceneLoad("Menu"));
     }
-
-    public void LoadScreenCredits()
-    {
-        audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelaySceneLoad("Credits"));
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
 
     IEnumerator DelaySceneLoad(string sceneName)
     {

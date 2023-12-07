@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     {
         sceneNameToMusicName.Add("Menu", "menu");
         sceneNameToMusicName.Add("Difficulty", "menu");
+        sceneNameToMusicName.Add("HowToPlay", "menu");
         sceneNameToMusicName.Add("Settings", "menu");
         sceneNameToMusicName.Add("Credits", "menu");
         sceneNameToMusicName.Add("ManonGame", "game");
