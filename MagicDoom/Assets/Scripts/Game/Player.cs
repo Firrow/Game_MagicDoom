@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Get potion
-        if (Input.GetKeyDown(KeyCode.E)) // changer pour input "GetPotion" KeyCode.E Input.GetAxisRaw("Horizontal"); 
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (ActualSpell == null) // Player can get a unique spell at the same time
             {
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
                 ChangeContentInCauldron(touchedCauldron.type, false);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0)) // changer pour input "UseSpell" KeyCode.Mouse0
+        else if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (actualSpell != null)
             {
@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
 
     private void TakeDamage()
     {
-        audioSource.PlayOneShot(soundsScream[Random.Range(0, 4)]);
+        audioSource.PlayOneShot(soundsScream[Random.Range(0, 2)]);
         Animator.SetBool("takeDamage", true);
 
         foreach (var enemy in enemiesImCollidingWith)
