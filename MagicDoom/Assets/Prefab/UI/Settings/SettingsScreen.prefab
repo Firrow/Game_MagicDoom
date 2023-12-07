@@ -1480,6 +1480,8 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 5960720577971966245}
   musicAudioMixer: {fileID: 24100000, guid: a8a10ce941f7c864db5c43bdcc343084, type: 2}
   soundAudioMixer: {fileID: 24100000, guid: 134ed3a8ffc6d3b41a8c3fe7d513ba4e, type: 2}
+  musicSlider: {fileID: 4071583060969178833}
+  soundSlider: {fileID: 2166922613600767068}
 --- !u!1 &3660717433017505086
 GameObject:
   m_ObjectHideFlags: 0

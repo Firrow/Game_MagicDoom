@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public AudioMixer musicAudioMixer;
     public AudioMixer soundAudioMixer;
+    public Slider musicSlider;
+    public Slider soundSlider;
 
     private AudioSource audioSource;
 
@@ -23,6 +26,12 @@ public class SettingsMenu : MonoBehaviour
     {
         AllResolutionSettings();
         audioSource = this.GetComponent<AudioSource>();
+
+        musicAudioMixer.GetFloat("musicVolume", out float musicValueForSlider);
+        musicSlider.value = musicValueForSlider;
+
+        soundAudioMixer.GetFloat("soundVolume", out float soundValueForSlider);
+        soundSlider.value = soundValueForSlider;
     }
 
     public void SetVolumeMusic(float volume)
