@@ -59,10 +59,7 @@ public class Enemy : MonoBehaviour
 
         // UNIQUEMENT POUR LE DÉVELOPPEMENT : A ENLEVER QUAND PLUS NÉCESSAIRE
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             TakeDamage(10);
-        }
-        //---------------------------------------------------------------------
     }
 
 

@@ -70,10 +70,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("spell : " + ActualSpell);
         // Get potion
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (ActualSpell == null) // Player can get a unique spell at the same time
+            if (ActualSpell == null && touchedCauldron.IsFill) // Player can get a unique spell at the same time
             {
                 // Get spell in link with the touched cauldron
                 ActualSpell = touchedCauldron.spell;
@@ -84,13 +85,13 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (actualSpell != null)
+            if (ActualSpell != null)
             {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 Animator.SetBool("castSpell", true);
             }
-            else if (actualSpell == null && enemiesImCollidingWith.Count > 0) // Player can attack even if he don't have spell
+            else if (ActualSpell == null && enemiesImCollidingWith.Count > 0) // Player can attack even if he don't have spell
                 PlayerAttack();
         }
     }
@@ -320,7 +321,7 @@ public class Player : MonoBehaviour
                 Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
                 break;
             case "life":
-                audioSource.PlayOneShot(soundLife); //dont work (instantiate empty life with an audioSource ?)
+                audioSource.PlayOneShot(soundLife);
                 if (Health < maxHealth)
                 {
                     Health += 10;
