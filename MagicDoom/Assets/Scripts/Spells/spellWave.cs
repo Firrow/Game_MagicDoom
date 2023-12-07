@@ -10,7 +10,6 @@ public class spellWave : MonoBehaviour
     private Vector3 movement;
     private Vector3 sensShoot = new Vector3(1, 0, 0);
     private int damage;
-    private Animator animator;
     private AudioSource audioSource;
 
 
@@ -19,17 +18,15 @@ public class spellWave : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         audioSource.PlayOneShot(sound);
         damage = 100;
-        speed = 3f;
-
-        animator = this.GetComponent<Animator>();
+        speed = 7.5f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         movement = new Vector3(sensShoot.x, 0, 0);
 
-        gameObject.transform.Translate(movement * speed * 2.5f * Time.deltaTime);
-        gameObject.transform.localScale += new Vector3(0.0035f, 0.0035f, 0);
+        gameObject.transform.Translate(movement * speed * Time.deltaTime);
+        gameObject.transform.localScale += new Vector3(0.03f, 0.03f, 0);
 
         RecalculateColliderShape();
     }

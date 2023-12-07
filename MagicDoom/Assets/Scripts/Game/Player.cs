@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("spell : " + ActualSpell);
         // Get potion
         if (Input.GetKeyDown(KeyCode.E))
         {
