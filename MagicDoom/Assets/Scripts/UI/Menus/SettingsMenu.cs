@@ -42,6 +42,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetVolumeSound(float volume)
     {
         soundAudioMixer.SetFloat("soundVolume", volume);
+        soundSlider.GetComponent<AudioSource>().PlayOneShot(soundClick);
     }
 
     public void SetFullscreen(bool isFullscreen)

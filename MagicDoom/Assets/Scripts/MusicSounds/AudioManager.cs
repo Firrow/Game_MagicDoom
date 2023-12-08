@@ -42,7 +42,6 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         if(myAudio == null)
         {
             myAudio = this.GetComponent<AudioSource>();

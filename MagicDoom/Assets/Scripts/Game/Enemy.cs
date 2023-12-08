@@ -55,11 +55,6 @@ public class Enemy : MonoBehaviour
             MoveEnemy();
         }
         EnemyOrientation();
-
-
-        // UNIQUEMENT POUR LE DÉVELOPPEMENT : A ENLEVER QUAND PLUS NÉCESSAIRE
-        if (Input.GetKeyDown(KeyCode.Space))
-            TakeDamage(10);
     }
 
 

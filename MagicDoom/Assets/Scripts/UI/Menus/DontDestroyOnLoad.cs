@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public AudioSource audioSourceMusic;
+    public AudioSource audioSourceSound;
     public static DontDestroyOnLoad instance;
 
 
@@ -11,6 +12,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         if (instance == null)
             instance = new DontDestroyOnLoad();
 
-        DontDestroyOnLoad(audioSource);
+        DontDestroyOnLoad(audioSourceMusic);
+        DontDestroyOnLoad(audioSourceSound);
     }
 }
