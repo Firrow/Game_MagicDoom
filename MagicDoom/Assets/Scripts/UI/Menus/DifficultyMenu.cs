@@ -15,25 +15,7 @@ public class DifficultyMenu : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
     }
 
-    public void LoadEasyGame(string difficulty)
-    {
-        audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelayGameLoad(difficulty, "ManonGame"));
-    }
-
-    public void LoadNormalGame(string difficulty)
-    {
-        audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelayGameLoad(difficulty, "ManonGame"));
-    }
-
-    public void LoadHardGame(string difficulty)
-    {
-        audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelayGameLoad(difficulty, "ManonGame"));
-    }
-
-    public void LoadGreatWizardGame(string difficulty)
+    public void LoadGame(string difficulty)
     {
         audioSource.PlayOneShot(soundClick);
         StartCoroutine(DelayGameLoad(difficulty, "ManonGame"));

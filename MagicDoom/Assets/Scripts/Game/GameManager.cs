@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
                 NumberEnemy = 25;
                 break;
             case "normal" :
-                NumberEnemy = 50;
+                NumberEnemy = 40;
                 break;
             case "hard":
-                NumberEnemy = 75;
+                NumberEnemy = 70;
                 break;
             case "greatWizard":
                 NumberEnemy = 100;
