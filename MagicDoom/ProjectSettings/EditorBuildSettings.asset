@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Credits.unity
     guid: 4fbcf4865de6431489dc83a873f6e090
   - enabled: 1
-    path: Assets/Scenes/ManonGame.unity
+    path: Assets/Scenes/Game.unity
     guid: 193fe3ae900437240a681f3585766179
   - enabled: 1
     path: Assets/Scenes/EndVictory.unity

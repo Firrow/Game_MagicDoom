@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
         sceneNameToMusicName.Add("HowToPlay", "menu");
         sceneNameToMusicName.Add("Settings", "menu");
         sceneNameToMusicName.Add("Credits", "menu");
-        sceneNameToMusicName.Add("ManonGame", "game");
+        sceneNameToMusicName.Add("Game", "game");
         sceneNameToMusicName.Add("EndVictory", "victory");
         sceneNameToMusicName.Add("EndGameOver", "gameOver");
 

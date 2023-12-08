@@ -18,7 +18,7 @@ public class DifficultyMenu : MonoBehaviour
     public void LoadGame(string difficulty)
     {
         audioSource.PlayOneShot(soundClick);
-        StartCoroutine(DelayGameLoad(difficulty, "ManonGame"));
+        StartCoroutine(DelayGameLoad(difficulty, "Game"));
     }
 
     public void LoadMainMenu()
