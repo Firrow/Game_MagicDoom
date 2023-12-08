@@ -19,11 +19,14 @@ public class SettingsMenu : MonoBehaviour
     public Slider soundSlider;
 
     private AudioSource audioSource;
+    private float oldVolumeSound;
+    private bool sceneLoaded = false;
 
 
 
     private void Start()
     {
+        sceneLoaded = true;
         AllResolutionSettings();
         audioSource = this.GetComponent<AudioSource>();
 
@@ -32,6 +35,8 @@ public class SettingsMenu : MonoBehaviour
 
         soundAudioMixer.GetFloat("soundVolume", out float soundValueForSlider);
         soundSlider.value = soundValueForSlider;
+
+        oldVolumeSound = soundValueForSlider;
     }
 
     public void SetVolumeMusic(float volume)
@@ -41,8 +46,12 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolumeSound(float volume)
     {
-        soundAudioMixer.SetFloat("soundVolume", volume);
-        soundSlider.GetComponent<AudioSource>().PlayOneShot(soundClick);
+        if (oldVolumeSound != 0) // Sound don't play two times
+        {
+            soundAudioMixer.SetFloat("soundVolume", volume);
+            soundSlider.GetComponent<AudioSource>().PlayOneShot(soundClick);
+            oldVolumeSound = volume;
+        }
     }
 
     public void SetFullscreen(bool isFullscreen)
