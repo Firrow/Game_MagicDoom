@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        // Abort if we already attacked recently.
+        // Abort if ennemi already attacked player recently.
         if (Time.time - lastDamageTime < 1)
             return;
 
