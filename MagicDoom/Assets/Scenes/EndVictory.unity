@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 643319727}
   - component: {fileID: 643319729}
   - component: {fileID: 643319728}
+  - component: {fileID: 643319730}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -607,6 +608,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643319726}
   m_CullTransparentMesh: 1
+--- !u!95 &643319730
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643319726}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41b34c9ae895a1148bb85c9f8d98aeb3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &860976226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1122,6 @@ GameObject:
   - component: {fileID: 1305543923}
   - component: {fileID: 1305543922}
   - component: {fileID: 1305543921}
-  - component: {fileID: 1305543924}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -1222,27 +1243,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305543919}
   m_CullTransparentMesh: 1
---- !u!95 &1305543924
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305543919}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2db5a34b8a174f64888cd0875c5ec5e5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1513882104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1254,11 +1254,11 @@ PrefabInstance:
     - target: {fileID: 179637928244907465, guid: 3ff8fa50f892d6040a1b8dbee0d86507, type: 3}
       propertyPath: TitleAndButtons
       value: 
-      objectReference: {fileID: 2059929111}
+      objectReference: {fileID: 643319726}
     - target: {fileID: 179637928244907465, guid: 3ff8fa50f892d6040a1b8dbee0d86507, type: 3}
       propertyPath: animatorVictory
       value: 
-      objectReference: {fileID: 2059929116}
+      objectReference: {fileID: 643319730}
     - target: {fileID: 754101292590941836, guid: 3ff8fa50f892d6040a1b8dbee0d86507, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1616,7 +1616,7 @@ Animator:
   m_GameObject: {fileID: 2057228266}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2db5a34b8a174f64888cd0875c5ec5e5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4bbd2e142f0a7df489b2b4ee30633a72, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1639,7 +1639,6 @@ GameObject:
   - component: {fileID: 2059929115}
   - component: {fileID: 2059929114}
   - component: {fileID: 2059929113}
-  - component: {fileID: 2059929116}
   m_Layer: 5
   m_Name: title + button
   m_TagString: Untagged
@@ -1732,27 +1731,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!95 &2059929116
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059929111}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 41b34c9ae895a1148bb85c9f8d98aeb3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

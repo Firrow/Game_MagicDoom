@@ -10,7 +10,6 @@ public class VictoryMenu : MonoBehaviour
 
     public void Appearing()
     {
-        //TitleAndButtons.SetActive(true);
         animatorVictory.SetTrigger("Appear");
     }
 
