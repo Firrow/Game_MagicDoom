@@ -19,17 +19,18 @@ public class Player : MonoBehaviour
     private bool gameOver;
     private bool victory;
     private Vector2 movement;
-    private Quaternion actualRotationSens;
+    private Quaternion currentRotationSens;
     private List<GameObject> enemiesImCollidingWith = new List<GameObject>();
     private float lastDamageTime;
     private Dictionary<string, GameObject> cauldrons = new Dictionary<string, GameObject>();
-    private GameObject actualSpell;
+    private GameObject currentSpell;
     private Cauldron touchedCauldron;
     private Vector2 mousePosition;
     private Animator animator;
+    private AnimatorClipInfo[] currentClipInfo;
     private GameManager gameManager;
     private Vector3 playerLastPosition;
-    private Vector3 playerActualPosition;
+    private Vector3 playerCurrentPosition;
     private Rigidbody2D rb;
     private AudioSource audioSource;
 
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
         speed = 2;
-        actualSpell = null;
+        currentSpell = null;
         canMove = true;
         Animator = this.GetComponent<Animator>();
         isDead = false;
@@ -65,18 +66,20 @@ public class Player : MonoBehaviour
         else
             MovePlayer();
 
-        actualRotationSens = this.transform.rotation;
+        currentRotationSens = this.transform.rotation;
     }
 
     private void Update()
     {
+        currentClipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
+
         // Get potion
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (ActualSpell == null && touchedCauldron.IsFill) // Player can get a unique spell at the same time
+            if (CurrentSpell == null && touchedCauldron.IsFill) // Player can get a unique spell at the same time
             {
                 // Get spell in link with the touched cauldron
-                ActualSpell = touchedCauldron.spell;
+                CurrentSpell = touchedCauldron.spell;
 
                 // Emptying the cauldron
                 ChangeContentInCauldron(touchedCauldron.type, false);
@@ -84,13 +87,13 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (ActualSpell != null)
+            if (CurrentSpell != null)
             {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 Animator.SetBool("castSpell", true);
             }
-            else if (ActualSpell == null && enemiesImCollidingWith.Count > 0) // Player can attack even if he don't have spell
+            else if (CurrentSpell == null) // Player can attack even if he don't have spell
                 PlayerAttack();
         }
     }
@@ -155,10 +158,10 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
-            playerActualPosition = this.transform.position;
+            playerCurrentPosition = this.transform.position;
 
             // Play idle animation or walking animation
-            IsMoving(playerActualPosition, playerLastPosition);
+            IsMoving(playerCurrentPosition, playerLastPosition);
 
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             float moveVertical = Input.GetAxisRaw("Vertical");
@@ -178,9 +181,9 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    private void IsMoving(Vector3 playerActualPosition, Vector3 playerLastPosition)
+    private void IsMoving(Vector3 playerCurrentPosition, Vector3 playerLastPosition)
     {
-        if (playerActualPosition == playerLastPosition)
+        if (playerCurrentPosition == playerLastPosition)
             Animator.SetBool("isWalking", false);
         else
             Animator.SetBool("isWalking", true);
@@ -195,7 +198,7 @@ public class Player : MonoBehaviour
         else if (moveHorizontal < 0)
             this.transform.rotation = Quaternion.Euler(0, -180, 0);
         else
-            this.transform.rotation = actualRotationSens;
+            this.transform.rotation = currentRotationSens;
     }
 
     public void soundSteps() // Called during animation
@@ -207,20 +210,23 @@ public class Player : MonoBehaviour
 
     private void TakeDamage()
     {
-        audioSource.PlayOneShot(soundsScream[Random.Range(0, 2)]);
-        Animator.SetBool("takeDamage", true);
-
-        foreach (var enemy in enemiesImCollidingWith)
+        if (currentClipInfo[0].clip.name != "Attack")
         {
-            Health -= enemy.GetComponent<Enemy>().Damage;
-            healthBar.SetHealth(Health);
+            audioSource.PlayOneShot(soundsScream[Random.Range(0, 2)]);
+            Animator.SetBool("takeDamage", true);
 
-            if (Health <= 0)
+            foreach (var enemy in enemiesImCollidingWith)
             {
-                isDead = true;
-                this.GetComponent<PolygonCollider2D>().enabled = false;
-                Animator.SetTrigger("isDead");
-                Animator.SetBool("takeDamage", false);
+                Health -= enemy.GetComponent<Enemy>().Damage;
+                healthBar.SetHealth(Health);
+
+                if (Health <= 0)
+                {
+                    isDead = true;
+                    this.GetComponent<PolygonCollider2D>().enabled = false;
+                    Animator.SetTrigger("isDead");
+                    Animator.SetBool("takeDamage", false);
+                }
             }
         }
     }
@@ -289,16 +295,16 @@ public class Player : MonoBehaviour
 
     private void CastSpell() // Called during animation
     {
-        if (actualSpell.transform.tag == "laser")
+        if (currentSpell.transform.tag == "laser")
         {
             animator.speed = 0f;
-            UseSpell(actualSpell);
-            ActualSpell = null;
+            UseSpell(currentSpell);
+            CurrentSpell = null;
         }
         else
         {
-            UseSpell(actualSpell);
-            ActualSpell = null;
+            UseSpell(currentSpell);
+            CurrentSpell = null;
             Animator.SetBool("castSpell", false);
         }
         
@@ -311,13 +317,13 @@ public class Player : MonoBehaviour
         switch (spell.tag)
         {
             case "laser":
-                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
                     break;
             case "bomb":
-                Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
                 break;
             case "wave":
-                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
                 break;
             case "life":
                 audioSource.PlayOneShot(soundLife);
@@ -328,7 +334,7 @@ public class Player : MonoBehaviour
                 }
                 break;
             case "wall":
-                Instantiate(spell, mousePosition, Quaternion.Euler(0, actualRotationSens.y * 180, 0));
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
                 break;
             default:
                 break;
@@ -373,10 +379,10 @@ public class Player : MonoBehaviour
         set { health = value; }
     }
 
-    public GameObject ActualSpell
+    public GameObject CurrentSpell
     {
-        get { return actualSpell; }
-        set { actualSpell = value; }
+        get { return currentSpell; }
+        set { currentSpell = value; }
     }
 
     public bool CanMove
@@ -385,10 +391,10 @@ public class Player : MonoBehaviour
         set { canMove = value; }
     }
 
-    public Quaternion ActualRotation
+    public Quaternion CurrentRotation
     {
-        get { return actualRotationSens; }
-        set { actualRotationSens = value; }
+        get { return currentRotationSens; }
+        set { currentRotationSens = value; }
     }
 
     public Animator Animator

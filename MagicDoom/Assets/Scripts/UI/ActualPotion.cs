@@ -17,9 +17,9 @@ public class ActualPotion : MonoBehaviour
 
     void Update()
     {
-        if (player.ActualSpell != null)
+        if (player.CurrentSpell != null)
         {
-            switch (player.ActualSpell.transform.tag)
+            switch (player.CurrentSpell.transform.tag)
             {
                 case "laser":
                     this.GetComponent<Image>().sprite = potionSprites[1];
