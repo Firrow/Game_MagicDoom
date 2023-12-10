@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{times} % ou seulement l'un, ou l'autre, ou lmodern etc. / Pour pouvoir conserver une police vectorielle malgré les accents
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc} % pour pouvoir tapper é au lieu de \'{e}]
+\usepackage[T1]{fontenc} % pour le rendu des accents et la césure pour les mots accentués
+% \usepackage{mltex}
+% \usepackage{lipsum}
+\usepackage[a4paper, margin=20mm]{geometry}
+\usepackage{graphicx} % Pour includegraphics
+\usepackage{subcaption} % Pour pouvoir réaliser des subfigure
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{placeins} % Pour FloatBarrier
+\usepackage{hyperref} % Pour transformer les section de tableofcontents par des liens clickables
+\usepackage{enumitem}% pour personnaliser les puces des listes
+\usepackage{subcaption}
+\usepackage[acronym]{glossaries} % pour faire les glossaires et les acronymes
+\usepackage{dirtree} % pour créer des arbres de systèmes de fichiers
+\usepackage{rotating} % pour utiliser \begin{sidewaysfigure} qui permet d'afficher une image en paysage
+%\usepackage[style=alphabetic]{biblatex} % to add bibliography
+
+% \usepackage{tikz} % pour la frise chronologique et surement d'autres trucs
+% \usetikzlibrary{timeline} % pour la frise chronologique
+% pour installer le package il faut aller sur https://github.com/cfiandra/timeline
+% télécharger le fichier tikzlibrarytimeleine.code.tex
+% le mettre tel quel dans le dossier C:\Users\Baptiste\AppData\Roaming\MiKTeX\tex\generic\pgf\timeline
+% est ce que le sous dossier pgf est vraiment important ?
+% (regarder l'endroit exact dans miktex -> settings -> Directories -> Config) puis créer /timeline
+% il faut ensuite actualiser les fichiers dans miktex -> le menu Tasks -> refresh file name databases
+%EN CAS D'ERREURS AVEC BIBTEX found no \citation command etc mettre custom toolchain à
+%TEX %ARG %DOC && %TEX %ARG %DOC
+%dans atom-latex settings
+
+%%%%%%% Parametre des en têtes %%%%%%%%
+\usepackage{fancyhdr}
+\usepackage{lastpage} % pour avoir le nombre total de page : page 1/3
+\pagestyle{fancy}
+\fancyhf{} % to clean header/footer of default style
+\rfoot{Page \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makenoidxglossaries % obligatoire à mettre avant newglossaryentry
+%\input{latex/glossary.tex}
+% on peut utiliser \gls \Gls \glspl \Glspl qui font un lien vers le glossaire et mettent le mot en majuscule/pluriel
+% on peut aussi utiliser \acrlong{...} \acrshort et \acrfull qui font respectivement
+% BDD
+% Base De Données
+% Base De Données (BDD)
+
+% Pour ajouter des points aux listes
+\setitemize[1]{label=\textbullet}
+\setitemize[2]{label=\textopenbullet}
