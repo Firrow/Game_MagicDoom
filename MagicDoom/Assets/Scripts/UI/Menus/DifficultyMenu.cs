@@ -27,13 +27,14 @@ public class DifficultyMenu : MonoBehaviour
         StartCoroutine(DelaySceneLoad("Menu"));
     }
 
+
+    // Allow to play sound before change scene
     IEnumerator DelayGameLoad(string difficulty, string sceneName)
     {
         yield return new WaitForSeconds(soundClick.length - 0.2f);
         GameManager.difficulty = difficulty;
         SceneManager.LoadScene(sceneName);
     }
-
     IEnumerator DelaySceneLoad(string sceneName)
     {
         yield return new WaitForSeconds(soundClick.length - 0.2f);

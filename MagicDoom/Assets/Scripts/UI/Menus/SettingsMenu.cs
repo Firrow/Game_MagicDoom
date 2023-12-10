@@ -75,6 +75,7 @@ public class SettingsMenu : MonoBehaviour
             pauseUI.SetActive(true);
     }
 
+    // Get all possible resolutions settings
     private void AllResolutionSettings()
     {
         //Get all resolutions in one occurence only + get the good one in starting game
@@ -107,12 +108,13 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
+
+    // Allow to play sound before change scene
     IEnumerator DelayPauseLoad(GameObject pauseUI)
     {
         audioSource.PlayOneShot(soundClick);
         yield return new WaitWhile(() => audioSource.isPlaying);
     }
-
     IEnumerator DelaySceneLoad(string sceneName)
     {
         yield return new WaitForSeconds(soundClick.length - 0.2f);

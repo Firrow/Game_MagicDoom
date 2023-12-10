@@ -45,6 +45,7 @@ public class Menu : MonoBehaviour
     }
 
 
+    // Allow to play sound before change scene
     IEnumerator DelaySceneLoad(string sceneName)
     {
         yield return new WaitForSeconds(soundClick.length - 0.2f);

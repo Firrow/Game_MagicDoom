@@ -36,6 +36,8 @@ public class HowToPlay : MonoBehaviour
         StartCoroutine(DelaySceneLoad("Menu"));
     }
 
+
+    // Allow to play sound before change scene
     IEnumerator DelaySceneLoad(string sceneName)
     {
         yield return new WaitForSeconds(soundClick.length - 0.2f);

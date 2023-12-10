@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     private Player player;
     private AudioSource audioSource;
 
+
     private void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
@@ -26,13 +27,9 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPause)
-            {
                 Resume();
-            }
             else
-            {
                 Paused();
-            }
         }
     }
 
@@ -69,6 +66,7 @@ public class PauseMenu : MonoBehaviour
     }
 
 
+    // Allow to play sound before change scene
     IEnumerator DelaySceneLoad(GameObject scene)
     {
         audioSource.PlayOneShot(soundClick);
@@ -77,12 +75,13 @@ public class PauseMenu : MonoBehaviour
         if (scene != null)
             scene.SetActive(true);
     }
-
     IEnumerator DelaySceneLoad(string sceneName)
     {
         yield return new WaitForSeconds(soundClick.length - 0.2f);
         SceneManager.LoadScene(sceneName);
     }
+
+
 
     public bool IsPause
     {
