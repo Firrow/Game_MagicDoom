@@ -75,6 +75,6 @@ crashlytics-build.properties
 # latex
 rapport/*.out
 rapport/*.toc
-rapport/*.aux
+rapport/**/*.aux
 rapport/*.log
 rapport/*.synctex.gz
