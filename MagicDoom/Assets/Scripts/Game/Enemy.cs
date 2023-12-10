@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-
+    // Collision between ennemies and other entities
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Enemies"))
@@ -73,11 +73,12 @@ public class Enemy : MonoBehaviour
         collisionCount--;
     }
 
+
+
     private void MoveEnemy()
     {
         transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position, speed * Time.deltaTime);
     }
-
 
     public void EnemyOrientation()
     {
@@ -103,6 +104,8 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+
 
     public void TakeDamage(int damage)
     {

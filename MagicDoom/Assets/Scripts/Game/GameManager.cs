@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        //récupérer difficulté choisie dans menu des difficultés
+        // Get difficulty in difficulty menu
         switch (difficulty)
         {
             case "easy":

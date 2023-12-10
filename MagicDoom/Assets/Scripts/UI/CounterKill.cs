@@ -10,6 +10,7 @@ public class CounterKill : MonoBehaviour
     private TMP_Text textScore;
     private GameManager gameManager;
 
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();

@@ -7,6 +7,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     public static DontDestroyOnLoad instance;
 
 
+    // Allow to keep object during all the game
     private void Start()
     {
         if (instance == null)

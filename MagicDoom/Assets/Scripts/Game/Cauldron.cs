@@ -34,6 +34,8 @@ public class Cauldron : MonoBehaviour
         }
     }
 
+
+    // Collision between cauldrons and other entities
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsFill && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -92,9 +94,9 @@ public class Cauldron : MonoBehaviour
             Health -= enemy.GetComponent<Enemy>().Damage;
         }
 
+        // sounds + sprite changes
         if (Health > defaultHealth * 0.75)
             spriteRenderer.sprite = cauldronSprites[0];
-            
         else if (Health > defaultHealth * 0.5)
         {
             spriteRenderer.sprite = cauldronSprites[1];

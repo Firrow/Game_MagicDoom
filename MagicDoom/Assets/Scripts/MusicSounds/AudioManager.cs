@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
 
     Dictionary<string, string> sceneNameToMusicName = new Dictionary<string, string>();
     private string lastSceneName;
-
     private static AudioManager instance = null;
     private AudioSource myAudio;
+
 
     private void Awake()
     {
@@ -40,6 +40,9 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+
+
+    // Load music according to load scene
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(myAudio == null)
@@ -66,10 +69,7 @@ public class AudioManager : MonoBehaviour
         foreach (var music in playlistMusics)
         {
             if (music.name == name)
-            {
-
                 return music;
-            }
         }
         throw new System.Exception("Music " + name + "not found");
     }

@@ -66,14 +66,13 @@ public class Player : MonoBehaviour
         else
             MovePlayer();
 
-        currentRotationSens = this.transform.rotation;
+        CurrentRotationSens = this.transform.rotation;
     }
 
     private void Update()
     {
         currentClipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
 
-        // Get potion
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (CurrentSpell == null && touchedCauldron.IsFill) // Player can get a unique spell at the same time
@@ -99,7 +98,7 @@ public class Player : MonoBehaviour
     }
 
 
-
+    // Collision between player and other entities
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
@@ -175,18 +174,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DontMovePlayer()
-    {
-        Animator.SetBool("isWalking", false);
-        rb.velocity = Vector2.zero;
-    }
-
     private void IsMoving(Vector3 playerCurrentPosition, Vector3 playerLastPosition)
     {
         if (playerCurrentPosition == playerLastPosition)
             Animator.SetBool("isWalking", false);
         else
             Animator.SetBool("isWalking", true);
+    }
+
+    private void DontMovePlayer()
+    {
+        Animator.SetBool("isWalking", false);
+        rb.velocity = Vector2.zero;
     }
 
     public void PlayerOrientation(float moveHorizontal)
@@ -198,7 +197,7 @@ public class Player : MonoBehaviour
         else if (moveHorizontal < 0)
             this.transform.rotation = Quaternion.Euler(0, -180, 0);
         else
-            this.transform.rotation = currentRotationSens;
+            this.transform.rotation = CurrentRotationSens;
     }
 
     public void soundSteps() // Called during animation
@@ -231,19 +230,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void StopTakeDamageAnimation() // Called when animation is over
+    private void StopTakeDamageAnimation() // Called when player take damage animation is over
     {
         Animator.SetBool("takeDamage", false);
     }
 
-    private void DestroyPlayer() // Called when animation is over
+    private void DestroyPlayer() // Called when dead player animation is over
     {
         Destroy(this.gameObject);
         GameOver = true;
     }
 
 
-
+    //Find which cauldron filled with reclaimed gem
     private void FindCauldron(string typeGem)
     {
         switch (typeGem)
@@ -293,7 +292,7 @@ public class Player : MonoBehaviour
             return;
     }
 
-    private void CastSpell() // Called during animation
+    private void CastSpell() // Called during player attack animation
     {
         if (currentSpell.transform.tag == "laser")
         {
@@ -314,16 +313,17 @@ public class Player : MonoBehaviour
     {
         GameObject spellPoint = this.transform.GetChild(0).gameObject;
 
+        // spells effects
         switch (spell.tag)
         {
             case "laser":
-                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, CurrentRotationSens.y * 180, 0));
                     break;
             case "bomb":
-                Instantiate(spell, mousePosition, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, CurrentRotationSens.y * 180, 0));
                 break;
             case "wave":
-                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
+                Instantiate(spell, spellPoint.transform.position, Quaternion.Euler(0, CurrentRotationSens.y * 180, 0));
                 break;
             case "life":
                 audioSource.PlayOneShot(soundLife);
@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
                 }
                 break;
             case "wall":
-                Instantiate(spell, mousePosition, Quaternion.Euler(0, currentRotationSens.y * 180, 0));
+                Instantiate(spell, mousePosition, Quaternion.Euler(0, CurrentRotationSens.y * 180, 0));
                 break;
             default:
                 break;
@@ -391,7 +391,7 @@ public class Player : MonoBehaviour
         set { canMove = value; }
     }
 
-    public Quaternion CurrentRotation
+    public Quaternion CurrentRotationSens
     {
         get { return currentRotationSens; }
         set { currentRotationSens = value; }
