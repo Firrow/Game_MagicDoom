@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class spellLaser : MonoBehaviour
 {
+    [SerializeField] AudioClip sound;
+
     private int damage;
     private Player player;
+    private AudioSource audioSource;
+
 
     void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound);
         damage = 100;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.CanMove = false;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3707468720227956594}
   - component: {fileID: 6752117059443956697}
   - component: {fileID: 2354940458345494631}
+  - component: {fileID: 8057691946823276016}
   - component: {fileID: 7402020573890463041}
   m_Layer: 12
   m_Name: Laser
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,16 +132,16 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 23.535156, y: 0.6347656}
-      - {x: 2.100768, y: 0.6347656}
-      - {x: 1.4345042, y: 0.22681083}
-      - {x: 1.1432734, y: 0.035106614}
-      - {x: 1.1528072, y: -0.0076635927}
+      - {x: 2.100768, y: 0.6172231}
+      - {x: 1.0690342, y: 0.6185949}
+      - {x: -0.0028406382, y: 0.026335321}
+      - {x: 1.0007719, y: -0.59826326}
       - {x: 1.9722507, y: -0.6050632}
       - {x: 2.3378096, y: -0.6050632}
       - {x: 2.4414062, y: -0.61035156}
       - {x: 12.573242, y: -0.5859375}
-      - {x: 12.573242, y: -0.6347656}
-      - {x: 15.771484, y: -0.6347656}
+      - {x: 12.9667425, y: -0.586441}
+      - {x: 15.239915, y: -0.60715157}
       - {x: 15.795898, y: -0.61035156}
       - {x: 43.87207, y: -0.61035156}
       - {x: 43.896484, y: -0.6347656}
@@ -148,6 +149,102 @@ PolygonCollider2D:
       - {x: 50, y: 0.5859375}
       - {x: 23.510742, y: 0.5859375}
   m_UseDelaunayMesh: 0
+--- !u!82 &8057691946823276016
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178068675383023810}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 134ed3a8ffc6d3b41a8c3fe7d513ba4e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &7402020573890463041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +257,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091b7f31ffdc2ac4c9b621a9a14dde95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 564af4233afeb08478173a3777ded8d3, type: 3}

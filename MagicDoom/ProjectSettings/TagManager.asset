@@ -17,6 +17,8 @@ TagManager:
   - laser
   - bomb
   - wave
+  - Button
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
