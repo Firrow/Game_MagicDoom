@@ -1,2 +1,2 @@
 # Game_MagicDoom
- Jeu Bonnot Manon - Clochard Baptiste dans le cadre du M2 Gamagora
+Projet de jeu réalisé par Bonnot Manon et Clochard Baptiste dans le cadre du M2 Gamagora
