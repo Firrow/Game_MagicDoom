@@ -115,6 +115,7 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
+            Debug.Log("DESTROY");
             isAlreadyPlayed(stepsDamage[3], sounds[3]);
             Invoke("Destroy", sounds[3].length);
         }
