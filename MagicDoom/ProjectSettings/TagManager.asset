@@ -5,6 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - ZoneSpawn
+  - Cauldron
+  - Enemy
+  - Blue
+  - Yellow
+  - Green
+  - Red
+  - Purple
+  - life
+  - wall
+  - laser
+  - bomb
+  - wave
   layers:
   - Default
   - TransparentFX
@@ -14,11 +26,11 @@ TagManager:
   - UI
   - Decor
   - Play
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Cauldrons
+  - Enemies
+  - Player
+  - Gems
+  - Spells
   - 
   - 
   - 
